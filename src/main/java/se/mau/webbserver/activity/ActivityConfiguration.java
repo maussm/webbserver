@@ -20,16 +20,16 @@ public class ActivityConfiguration {
                 "FIKA2",
                 15
             );
-            Activity fika3 = new Activity(
+            Activity fika5 = new Activity(
                 1L,
                 LocalDate.of(2022, 4, 13),
                 LocalDate.of(2022, 4, 13),
                 "STHLM16",
-                "FIKA3",
+                "FIKA5",
                 15
             );
 
-            repository.saveAll(List.of(fika2, fika3));
+            repository.saveAll(List.of(fika2, fika5));
         };
 
     }

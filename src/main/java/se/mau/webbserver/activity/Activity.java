@@ -47,4 +47,52 @@ public class Activity {
         this.activityId = activityId;
         this.nrOfParticipants = nrOfParticipants;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalDate getReported() {
+        return reported;
+    }
+
+    public void setReported(LocalDate reported) {
+        this.reported = reported;
+    }
+
+    public String getCostCenter() {
+        return costCenter;
+    }
+
+    public void setCostCenter(String costCenter) {
+        this.costCenter = costCenter;
+    }
+
+    public String getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
+    }
+
+    public Integer getNrOfParticipants() {
+        return nrOfParticipants;
+    }
+
+    public void setNrOfParticipants(Integer nrOfParticipants) {
+        this.nrOfParticipants = nrOfParticipants;
+    }
 }
