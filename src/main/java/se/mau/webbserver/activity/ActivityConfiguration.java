@@ -28,9 +28,7 @@ public class ActivityConfiguration {
                 "FIKA5",
                 15
             );
-
             repository.saveAll(List.of(fika2, fika5));
         };
-
     }
 }
