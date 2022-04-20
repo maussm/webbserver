@@ -21,7 +21,7 @@ public class ActivityConfiguration {
                 15
             );
             Activity fika5 = new Activity(
-                1L,
+                2L, //måste vara unik*
                 LocalDate.of(2022, 4, 13),
                 LocalDate.of(2022, 4, 13),
                 "STHLM16",
