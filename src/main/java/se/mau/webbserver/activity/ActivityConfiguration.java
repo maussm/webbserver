@@ -12,23 +12,44 @@ public class ActivityConfiguration {
     @Bean
     CommandLineRunner commandLineRunner(ActivityRepository repository) {
         return args -> {
+            Activity fika1 = new Activity(
+                LocalDate.of(2022, 4, 13),
+                LocalDate.of(2022, 4, 13),
+                "STHLM25",
+                "FIKA1",
+                15
+            );
             Activity fika2 = new Activity(
-                1L,
                 LocalDate.of(2022, 4, 13),
                 LocalDate.of(2022, 4, 13),
-                "STHLM14",
+                "STHLM35",
                 "FIKA2",
                 15
             );
-            Activity fika5 = new Activity(
-                2L, //måste vara unik*
+            Activity fika3 = new Activity(
+                LocalDate.of(2022, 4, 13),
+                LocalDate.of(2022, 4, 13),
+                "STHLM12",
+                "FIKA3",
+                15
+            );
+            Activity fika4 = new Activity(
                 LocalDate.of(2022, 4, 13),
                 LocalDate.of(2022, 4, 13),
                 "STHLM16",
+                "FIKA4",
+                15
+            );
+            Activity fika5 = new Activity(
+                LocalDate.of(2022, 4, 13),
+                LocalDate.of(2022, 4, 13),
+                "STHLM29",
                 "FIKA5",
                 15
             );
-            repository.saveAll(List.of(fika2, fika5));
+
+            repository.saveAll(List.of(fika1, fika2, fika3, fika4, fika5));
         };
+
     }
 }
