@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class WebbserverApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(WebbserverApplication.class, args);
     }

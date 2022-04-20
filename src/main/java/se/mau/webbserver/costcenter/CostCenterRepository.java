@@ -1,4 +1,6 @@
 package se.mau.webbserver.costcenter;
 
-public interface CostCenterRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CostCenterRepository extends JpaRepository<CostCenter, Long> {
 }
