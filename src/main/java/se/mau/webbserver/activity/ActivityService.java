@@ -17,4 +17,7 @@ public class ActivityService {
     public List<Activity> getActivities() {
         return activityRepository.findAll();
     }
+    public List<Activity> findAllById(Long id) {
+        return activityRepository.findAllById(List.of(id));
+    } //TODO Test Method. Method takes the internal DB ID of a Cost Center and returns all activities pertaining to that Cost Center
 }
