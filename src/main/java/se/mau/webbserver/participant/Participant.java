@@ -17,7 +17,9 @@ public class Participant {
     )
     private Long id;
     private String name;
-    public Participant(){}
+
+    public Participant(){
+    }
 
     public Participant(Long id, String name) {
         this.id = id;
