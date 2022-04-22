@@ -7,6 +7,6 @@ git checkout alpha
 git submodule init
 git submodule update
 ```
-5. Öppna katalogen i IntelliJ.
-6. Kör programmet.
-7. Navigera till http://localhost i en webbläsare.
+2. Öppna katalogen i IntelliJ.
+3. Kör programmet.
+4. Navigera till http://localhost i en webbläsare.
