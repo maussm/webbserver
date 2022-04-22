@@ -1,18 +1,21 @@
 package se.mau.webbserver.activity;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.List;
 
-@Configuration
-public class ActivityConfiguration {
+@Component
+public class ActivityConfiguration implements CommandLineRunner {
+    private final ActivityRepository repository;
 
-    @Bean
-    CommandLineRunner commandLineRunner(ActivityRepository repository) {
-        return args -> {
-            Activity fika1 = new Activity(
+    public ActivityConfiguration(ActivityRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        Activity fika1 = new Activity(
                 LocalDate.of(2022, 4, 13),
                 LocalDate.of(2022, 4, 13),
                 "STHLM25",
@@ -49,7 +52,5 @@ public class ActivityConfiguration {
             );
 
             repository.saveAll(List.of(fika1, fika2, fika3, fika4, fika5));
-        };
-
     }
 }

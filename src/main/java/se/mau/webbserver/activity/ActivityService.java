@@ -34,8 +34,7 @@ public class ActivityService {
     }
 
     public void addActivity(Activity activity) {
-        Optional<Activity> activityOptional =
-            activityRepository.findActivityByActivityId(activity.getActivityId());
+        Optional<Activity> activityOptional = activityRepository.findActivityByActivityId(activity.getActivityId());
 
         if(activityOptional.isPresent()) {
             throw new IllegalStateException("Activity taken");
@@ -47,11 +46,10 @@ public class ActivityService {
     public void deleteActivity(String activityId) {
         // boolean exists = activityRepository.existsById(activityId);
 
-        Optional<Activity> activityOptional =
-            activityRepository.findActivityByActivityId(activityId);
+        Optional<Activity> activityOptional = activityRepository.findActivityByActivityId(activityId);
 
         if(activityOptional.isEmpty()) {
-            throw new IllegalStateException("Activity does not exist.");
+            throw new IllegalStateException(String.format("Activity %s does not exist.", activityId));
         }
         activityRepository.delete(activityOptional.get());
     }
