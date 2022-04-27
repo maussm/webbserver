@@ -1,4 +1,4 @@
-package se.mau.webbserver.participant;
+package se.mau.webbserver.restapi.participant;
 
 import javax.persistence.*;
 

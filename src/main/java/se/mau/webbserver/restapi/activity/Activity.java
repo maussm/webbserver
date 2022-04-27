@@ -1,4 +1,4 @@
-package se.mau.webbserver.activity;
+package se.mau.webbserver.restapi.activity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

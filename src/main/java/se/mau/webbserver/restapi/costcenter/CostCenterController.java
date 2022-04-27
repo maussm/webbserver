@@ -1,4 +1,4 @@
-package se.mau.webbserver.costcenter;
+package se.mau.webbserver.restapi.costcenter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/test2")
+@RequestMapping(path = "/api")
 public class CostCenterController {
     private final CostCenterService costCenterService;
 

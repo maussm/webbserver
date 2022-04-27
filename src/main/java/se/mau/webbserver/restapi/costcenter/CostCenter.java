@@ -1,4 +1,4 @@
-package se.mau.webbserver.costcenter;
+package se.mau.webbserver.restapi.costcenter;
 
 import javax.persistence.*;
 import java.util.Objects;

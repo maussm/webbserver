@@ -1,4 +1,4 @@
-package se.mau.webbserver.activity;
+package se.mau.webbserver.restapi.activity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
