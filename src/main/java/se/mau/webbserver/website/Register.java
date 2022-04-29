@@ -1,15 +1,15 @@
-package se.mau.webbserver.websites;
+package se.mau.webbserver.website;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import se.mau.webbserver.restapi.costcenter.CostCenterService;
+import se.mau.webbserver.entity.costCenter.CostCenterService;
 
 @Controller
 public class Register {
-    private CostCenterService costCenterService;
+    private final CostCenterService costCenterService;
 
     @Autowired
     public Register(CostCenterService costCenterService) {

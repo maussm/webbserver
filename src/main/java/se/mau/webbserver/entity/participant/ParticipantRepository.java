@@ -1,4 +1,4 @@
-package se.mau.webbserver.restapi.participant;
+package se.mau.webbserver.entity.participant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

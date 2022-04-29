@@ -1,4 +1,4 @@
-package se.mau.webbserver.restapi.activity;
+package se.mau.webbserver.entity.activity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -94,5 +95,17 @@ public class Activity {
 
     public void setNrOfParticipants(Integer nrOfParticipants) {
         this.nrOfParticipants = nrOfParticipants;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (! (o instanceof Activity activity)) return false;
+        return Objects.equals(id, activity.id) && Objects.equals(date, activity.date) && Objects.equals(reported, activity.reported) && Objects.equals(costCenter, activity.costCenter) && Objects.equals(activityId, activity.activityId) && Objects.equals(nrOfParticipants, activity.nrOfParticipants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, reported, costCenter, activityId, nrOfParticipants);
     }
 }

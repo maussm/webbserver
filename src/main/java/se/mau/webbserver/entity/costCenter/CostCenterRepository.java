@@ -1,4 +1,4 @@
-package se.mau.webbserver.restapi.costcenter;
+package se.mau.webbserver.entity.costCenter;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;

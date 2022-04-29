@@ -1,6 +1,11 @@
-package se.mau.webbserver.restapi.costcenter;
+package se.mau.webbserver.entity.costCenter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -61,9 +66,8 @@ public class CostCenter {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CostCenter that = (CostCenter) o;
-        return Objects.equals(id, that.id) && Objects.equals(centerName, that.centerName) && Objects.equals(centerCategory, that.centerCategory);
+        if (! (o instanceof CostCenter costCenter)) return false;
+        return Objects.equals(id, costCenter.id) && Objects.equals(centerName, costCenter.centerName) && Objects.equals(centerCategory, costCenter.centerCategory);
     }
 
     @Override
