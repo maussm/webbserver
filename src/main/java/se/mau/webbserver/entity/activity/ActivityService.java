@@ -14,7 +14,7 @@ public class ActivityService {
         this.repository = repository;
     }
 
-    public List<Activity> getActivities() {
+    public List<Activity> getActivity() {
         return repository.findAll();
     }
 
@@ -24,28 +24,27 @@ public class ActivityService {
         if(optionalActivity.isPresent()) {
             return optionalActivity.get();
         } else {
-            throw new IllegalStateException(String.format("%s does not exist", id));
+            throw new IllegalStateException(String.format("Activity with id %s does not exist.", id));
         }
     }
 
     public void addActivity(Activity activity) {
-        Optional<Activity> optionalActivity = repository.findActivityByActivityId(activity.getActivityId());
+        Optional<Activity> optionalActivity = repository.findById(activity.getId());
 
         if(optionalActivity.isPresent()) {
-            throw new IllegalStateException("Activity taken");
+            throw new IllegalStateException(String.format("Activity with %s already exists.", activity.getId()));
         }
 
         repository.save(activity);
     }
 
-    public void deleteActivity(String activityId) {
-        // boolean exists = activityRepository.existsById(activityId);
-
-        Optional<Activity> optionalActivity = repository.findActivityByActivityId(activityId);
+    public void deleteActivity(Long id) {
+        Optional<Activity> optionalActivity = repository.findById(id);
 
         if(optionalActivity.isEmpty()) {
-            throw new IllegalStateException(String.format("Activity %s does not exist.", activityId));
+            throw new IllegalStateException(String.format("Activity with id %s does not exist.", id));
         }
+
         repository.delete(optionalActivity.get());
     }
 
@@ -53,7 +52,7 @@ public class ActivityService {
         Optional<Activity> optionalActivity = repository.findById(id);
 
         if(optionalActivity.isEmpty()) {
-            throw new IllegalStateException(String.format("Activity %s does not exist.", id));
+            throw new IllegalStateException(String.format("Activity with id %s does not exist.", id));
         }
 
         Activity _activity = optionalActivity.get();
@@ -62,19 +61,18 @@ public class ActivityService {
             if(activity.getDate() != null) {
                 _activity.setDate(activity.getDate());
             }
-            if(activity.getReported() != null) {
-                _activity.setReported(activity.getReported());
+            if(activity.getOccurrence() != null) {
+                _activity.setOccurrence(activity.getOccurrence());
             }
-            if(activity.getCostCenter() != null) {
-                _activity.setCostCenter(activity.getCostCenter());
+            if(activity.getCostCenterId() != null) {
+                _activity.setCostCenterId(activity.getCostCenterId());
             }
-            if(activity.getActivityId() != null) {
-                _activity.setActivityId(activity.getActivityId());
+            if(activity.getActivityName() != null) {
+                _activity.setActivityName(activity.getActivityName());
             }
-            if(activity.getNrOfParticipants() != null) {
-                _activity.setNrOfParticipants(activity.getNrOfParticipants());
+            if(activity.getNbrOfParticipants() != null) {
+                _activity.setNbrOfParticipants(activity.getNbrOfParticipants());
             }
-
             repository.save(_activity);
         }
     }

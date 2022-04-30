@@ -1,4 +1,4 @@
-package se.mau.webbserver.entity.costCenter;
+package se.mau.webbserver.entity.cost_center;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,12 @@ public class CostCenterService {
     }
 
     public CostCenter getCostCenter(Long id) {
-        Optional<CostCenter> costCenterOptional = repository.findById(id);
+        Optional<CostCenter> optionalCostCenter = repository.findById(id);
 
-        if(costCenterOptional.isPresent()) {
-            return costCenterOptional.get();
+        if(optionalCostCenter.isPresent()) {
+            return optionalCostCenter.get();
         } else {
-            throw new IllegalStateException(String.format("%s does not exist", id));
+            throw new IllegalStateException(String.format("Cost center with id %s does not exist.", id));
         }
     }
 
@@ -34,7 +34,7 @@ public class CostCenterService {
         Optional<CostCenter> optionalCostCenter = repository.findById(costCenter.getId());
 
         if(optionalCostCenter.isPresent()) {
-            throw new IllegalStateException("Cost center taken");
+            throw new IllegalStateException(String.format("Cost center with id %s already exists.", costCenter.getId()));
         }
 
         repository.save(costCenter);
@@ -44,7 +44,7 @@ public class CostCenterService {
         Optional<CostCenter> optionalCostCenter = repository.findById(id);
 
         if(optionalCostCenter.isEmpty()) {
-            throw new IllegalStateException(String.format("Cost center %s does not exist.", id));
+            throw new IllegalStateException(String.format("Cost center with id %s does not exist.", id));
         }
 
         repository.delete(optionalCostCenter.get());
@@ -54,20 +54,18 @@ public class CostCenterService {
         Optional<CostCenter> optionalCostCenter = repository.findById(id);
 
         if(optionalCostCenter.isEmpty()) {
-            throw new IllegalStateException(String.format("Cost center %s does not exist.", id));
+            throw new IllegalStateException(String.format("Cost center with id %s does not exist.", id));
         }
 
         CostCenter _costCenter = optionalCostCenter.get();
 
         if(!(_costCenter.equals(costCenter))) {
-            if(costCenter.getCenterName() != null) {
-                _costCenter.setCenterName(costCenter.getCenterName());
+            if(costCenter.getName() != null) {
+                _costCenter.setName(costCenter.getName());
             }
-            if(costCenter.getCenterCategory() != null) {
-                _costCenter.setCenterCategory(costCenter.getCenterCategory());
+            if(costCenter.getLocaiton() != null) {
+                _costCenter.setLocaiton(costCenter.getLocaiton());
             }
-
-
             repository.save(_costCenter);
         }
     }
@@ -77,7 +75,7 @@ public class CostCenterService {
         String name = null;
 
         if(costCenter.isPresent()) {
-            name = costCenter.get().getCenterName();
+            name = costCenter.get().getName();
         }
 
         return name;

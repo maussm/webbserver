@@ -25,7 +25,7 @@ public class ParticipantService {
         if(optionalParticipant.isPresent()) {
             return optionalParticipant.get();
         } else {
-            throw new IllegalStateException(String.format("%s does not exist", id));
+            throw new IllegalStateException(String.format("Participant with id %s does not exist", id));
         }
     }
 
@@ -33,7 +33,7 @@ public class ParticipantService {
         Optional<Participant> optionalParticipant = repository.findById(participant.getId());
 
         if(optionalParticipant.isPresent()) {
-            throw new IllegalStateException("Participant taken");
+            throw new IllegalStateException(String.format("Participant with id %s already exist", participant.getId()));
         }
 
         repository.save(participant);
@@ -43,7 +43,7 @@ public class ParticipantService {
         Optional<Participant> optionalParticipant = repository.findById(id);
 
         if(optionalParticipant.isEmpty()) {
-            throw new IllegalStateException(String.format("Participant %s does not exist.", id));
+            throw new IllegalStateException(String.format("Participant with id %s does not exist.", id));
         }
 
         repository.delete(optionalParticipant.get());
@@ -53,7 +53,7 @@ public class ParticipantService {
         Optional<Participant> optionalParticipant = repository.findById(id);
 
         if(optionalParticipant.isEmpty()) {
-            throw new IllegalStateException(String.format("Participant %s does not exist.", id));
+            throw new IllegalStateException(String.format("Participant with id %s does not exist.", id));
         }
 
         Participant _participant = optionalParticipant.get();

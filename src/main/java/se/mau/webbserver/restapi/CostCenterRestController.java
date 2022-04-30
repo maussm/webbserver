@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import se.mau.webbserver.entity.costCenter.CostCenter;
-import se.mau.webbserver.entity.costCenter.CostCenterService;
+import se.mau.webbserver.entity.cost_center.CostCenter;
+import se.mau.webbserver.entity.cost_center.CostCenterService;
 import java.util.List;
 
 @RestController

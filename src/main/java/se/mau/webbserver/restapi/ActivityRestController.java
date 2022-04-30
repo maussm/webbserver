@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import se.mau.webbserver.entity.activity.Activity;
-import se.mau.webbserver.entity.activity.ActivityService;
+import se.mau.webbserver.entity.tk.activity.Activity;
+import se.mau.webbserver.entity.tk.activity.ActivityService;
 import java.util.List;
 
 @RestController
@@ -28,9 +28,9 @@ public class ActivityRestController {
         return service.getActivities();
     }
 
-    @GetMapping("/{id}")
-    public Activity getActivities(@PathVariable Long id) {
-        return service.getActivity(id);
+    @GetMapping("/{name}&{activityType}")
+    public Activity getActivities(@PathVariable String name, @PathVariable String activityType) {
+        return service.getActivity(name, activityType);
     }
 
     @PostMapping
@@ -38,13 +38,8 @@ public class ActivityRestController {
         service.addActivity(activity);
     }
 
-    @DeleteMapping("/{activityId}")
-    public void deleteActivity(@PathVariable String activityId) {
-        service.deleteActivity(activityId);
-    }
-
-    @PatchMapping("/{id}")
-    public void patchActivity(@PathVariable Long id, @RequestBody Activity activity) {
-        service.patchActivity(id, activity);
+    @DeleteMapping("/{name}&{activityType}")
+    public void deleteActivity(@PathVariable String name, @PathVariable String activityType) {
+        service.deleteActivity(name, activityType);
     }
 }
