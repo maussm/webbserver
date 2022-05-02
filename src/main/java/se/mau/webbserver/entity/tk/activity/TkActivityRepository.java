@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    Optional<Activity> findByNameAndActivityType(String name, String activityType);
+public interface TkActivityRepository extends JpaRepository<TkActivity, Long> {
+    Optional<TkActivity> findByNameAndActivityType(String name, String activityType);
 }

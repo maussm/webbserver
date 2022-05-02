@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table
-public class Activity {
+public class TkActivity {
     @Id
     private String name;
     private String activityType;
@@ -31,7 +31,7 @@ public class Activity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (! (o instanceof Activity activity)) return false;
+        if (! (o instanceof TkActivity activity)) return false;
         return Objects.equals(name, activity.name) && Objects.equals(activityType, activity.activityType);
     }
 
