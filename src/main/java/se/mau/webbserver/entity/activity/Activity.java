@@ -1,15 +1,21 @@
 package se.mau.webbserver.entity.activity;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "activity")
 public class Activity {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
-    @Column (name = "reported_date")
+    @Column(name = "reported_date")
     private Date reportedDate;
     @Column (name = "occurrence_date")
     private Date occurrenceDate;

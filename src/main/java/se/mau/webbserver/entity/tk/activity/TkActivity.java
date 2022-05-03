@@ -5,9 +5,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
+/**
+ * Fourth layer of the service-catalogue
+ *
+ */
+
 @Entity
 @Table (name = "tk_activity")
-public class TkActivity {
+public class TKActivity {
     @Id
     private String name;
     private String activityType;
@@ -31,7 +36,7 @@ public class TkActivity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (! (o instanceof TkActivity activity)) return false;
+        if (! (o instanceof TKActivity activity)) return false;
         return Objects.equals(name, activity.name) && Objects.equals(activityType, activity.activityType);
     }
 

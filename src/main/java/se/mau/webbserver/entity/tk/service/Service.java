@@ -4,6 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Second layer of the service catalogue
+ *
+ */
+
 @Entity
 @Table(name = "tk_service")
 public class Service {

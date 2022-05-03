@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * First layer of the service catalogue
+ */
+
 @Entity
 @Table(name = "tk_category")
 public class Category {

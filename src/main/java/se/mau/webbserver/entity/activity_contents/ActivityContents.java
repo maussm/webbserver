@@ -1,6 +1,10 @@
 package se.mau.webbserver.entity.activity_contents;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,7 +13,7 @@ import java.util.Objects;
 @IdClass(ActivityContents.class)
 public class ActivityContents implements Serializable {
     @Id
-    @Column (name = "activity_id")
+    @Column(name = "activity_id")
     private Long activityId;
     @Id
     @Column (name = "participant_id")

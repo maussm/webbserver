@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import se.mau.webbserver.entity.tk.activity.TkActivity;
+import se.mau.webbserver.entity.tk.activity.TKActivity;
 import se.mau.webbserver.entity.tk.activity.TkActivityService;
 import java.util.List;
 
@@ -23,17 +23,17 @@ public class TkActivityRestController {
     }
 
     @GetMapping
-    public List<TkActivity> getActivities() {
+    public List<TKActivity> getActivities() {
         return service.getActivities();
     }
 
     @GetMapping("/{name}&{activityType}")
-    public TkActivity getActivities(@PathVariable String name, @PathVariable String activityType) {
+    public TKActivity getActivities(@PathVariable String name, @PathVariable String activityType) {
         return service.getActivity(name, activityType);
     }
 
     @PostMapping
-    public void addActivity(@RequestBody TkActivity activity) {
+    public void addActivity(@RequestBody TKActivity activity) {
         service.addActivity(activity);
     }
 
