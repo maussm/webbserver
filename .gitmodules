@@ -1,0 +1,3 @@
+[submodule "src/main/resources/GUI"]
+	path = src/main/resources/GUI
+	url = git@github.com:maussm/GUI.git
