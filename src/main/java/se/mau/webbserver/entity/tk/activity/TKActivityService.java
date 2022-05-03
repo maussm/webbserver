@@ -32,11 +32,11 @@ public class TKActivityService {
 
     public void addActivity(TKActivity activity) {
         Optional<TKActivity> optionalActivity =
-            repository.findByNameAndActivityType(activity.getName(), activity.getActivityType());
+            repository.findByNameAndActivityType(activity.getName(), activity.getTypeId());
 
         if(optionalActivity.isPresent()) {
             throw new IllegalStateException(String.format(
-                "Activity with name %s and type %s already exist", activity.getName(), activity.getActivityType()
+                "Activity with name %s and type %s already exist", activity.getName(), activity.getTypeId()
             ));
         }
         repository.save(activity);

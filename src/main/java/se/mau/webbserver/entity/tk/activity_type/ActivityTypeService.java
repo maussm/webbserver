@@ -35,12 +35,12 @@ public class ActivityTypeService {
     }
 
     public void addActivityType(ActivityType activityType) {
-        Optional<ActivityType> optionalActivityType = findById(activityType.getName(), activityType.getServiceType());
+        Optional<ActivityType> optionalActivityType = findById(activityType.getName(), activityType.getServiceId());
 
         if(optionalActivityType.isPresent()) {
             throw new IllegalStateException(String.format(
                 "Activity type with name %s and service %s already exist",
-                activityType.getName(), activityType.getServiceType()
+                activityType.getName(), activityType.getServiceId()
             ));
         }
         repository.save(activityType);

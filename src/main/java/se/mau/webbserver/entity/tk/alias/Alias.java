@@ -5,6 +5,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
+/**
+ * Alias for cost-centers various definitions of the fourth layer of the service catalogue
+ */
+
 @Entity
 @Table(name = "tk_alias")
 public class Alias {

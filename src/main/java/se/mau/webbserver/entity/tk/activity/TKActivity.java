@@ -1,21 +1,32 @@
 package se.mau.webbserver.entity.tk.activity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
 /**
- * Fourth layer of the service-catalogue
- *
+ * Fourth layer of the service-catalogu
  */
 
 @Entity
 @Table (name = "tk_activity")
 public class TKActivity {
-    @Id
+    @Id @Column(name = "id")
+    private Long id;
+    @Column(name = "name")
     private String name;
-    private String activityType;
+    @Column(name = "type_id")
+    private Long typeId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -25,23 +36,23 @@ public class TKActivity {
         this.name = name;
     }
 
-    public String getActivityType() {
-        return activityType;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (! (o instanceof TKActivity activity)) return false;
-        return Objects.equals(name, activity.name) && Objects.equals(activityType, activity.activityType);
+        return Objects.equals(name, activity.name) && Objects.equals(typeId, activity.typeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, activityType);
+        return Objects.hash(name, typeId);
     }
 }
