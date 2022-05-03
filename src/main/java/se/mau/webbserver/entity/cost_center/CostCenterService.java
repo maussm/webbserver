@@ -63,8 +63,8 @@ public class CostCenterService {
             if(costCenter.getName() != null) {
                 _costCenter.setName(costCenter.getName());
             }
-            if(costCenter.getLocaiton() != null) {
-                _costCenter.setLocaiton(costCenter.getLocaiton());
+            if(costCenter.getLocation() != null) {
+                _costCenter.setLocation(costCenter.getLocation());
             }
             repository.save(_costCenter);
         }

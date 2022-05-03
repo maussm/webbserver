@@ -2,9 +2,15 @@ package se.mau.webbserver.entity.tk.activity_type;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
+/**
+ * Third layer of the service catalogue
+ */
+
 @Entity
+@Table(name = "tk_activity_type")
 public class ActivityType {
     @Id
     private String name;

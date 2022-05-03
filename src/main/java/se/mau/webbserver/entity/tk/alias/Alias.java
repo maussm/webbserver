@@ -2,21 +2,23 @@ package se.mau.webbserver.entity.tk.alias;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
+@Table(name = "tk_alias")
 public class Alias {
     @Id
-    private String name;
+    private String definition;
     private Long costCenter;
     private String activityName;
 
-    public String getName() {
-        return name;
+    public String getDefinition() {
+        return definition;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDefinition(String definition) {
+        this.definition = definition;
     }
 
     public Long getCostCenter() {
@@ -40,11 +42,11 @@ public class Alias {
         if (this == o) return true;
         if (! (o instanceof Alias)) return false;
         Alias alias = (Alias) o;
-        return Objects.equals(name, alias.name) && Objects.equals(costCenter, alias.costCenter) && Objects.equals(activityName, alias.activityName);
+        return Objects.equals(definition, alias.definition) && Objects.equals(costCenter, alias.costCenter) && Objects.equals(activityName, alias.activityName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, costCenter, activityName);
+        return Objects.hash(definition, costCenter, activityName);
     }
 }

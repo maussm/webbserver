@@ -1,18 +1,19 @@
 package se.mau.webbserver.entity.activity_contents;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "activity_contents")
 @IdClass(ActivityContents.class)
 public class ActivityContents implements Serializable {
     @Id
-    private Long participantId;
-    @Id
+    @Column (name = "activity_id")
     private Long activityId;
+    @Id
+    @Column (name = "participant_id")
+    private Long participantId;
 
     public Long getParticipantId() {
         return participantId;

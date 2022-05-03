@@ -2,8 +2,10 @@ package se.mau.webbserver.entity.tk.service;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tk_service")
 public class Service {
     @Id
     private String name;

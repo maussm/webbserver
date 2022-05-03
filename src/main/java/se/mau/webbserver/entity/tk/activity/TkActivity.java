@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table (name = "tk_activity")
 public class TkActivity {
     @Id
     private String name;

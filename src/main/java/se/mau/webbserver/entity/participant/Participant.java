@@ -4,10 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table (name = "participant")
 public class Participant {
-    @Id
+    @Id @GeneratedValue
     private Long id;
+    @Column(name = "name")
     private String name;
 
     public Long getId() {

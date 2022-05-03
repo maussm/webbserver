@@ -58,17 +58,17 @@ public class ActivityService {
         Activity _activity = optionalActivity.get();
 
         if(!(_activity.equals(activity))) {
-            if(activity.getDate() != null) {
-                _activity.setDate(activity.getDate());
+            if(activity.getReportedDate() != null) {
+                _activity.setReportedDate(activity.getReportedDate());
             }
-            if(activity.getOccurrence() != null) {
-                _activity.setOccurrence(activity.getOccurrence());
+            if(activity.getOccurrenceDate() != null) {
+                _activity.setOccurrenceDate(activity.getOccurrenceDate());
             }
             if(activity.getCostCenterId() != null) {
                 _activity.setCostCenterId(activity.getCostCenterId());
             }
-            if(activity.getActivityName() != null) {
-                _activity.setActivityName(activity.getActivityName());
+            if(activity.getActivityID() != null) {
+                _activity.setActivityID(activity.getActivityID());
             }
             if(activity.getNbrOfParticipants() != null) {
                 _activity.setNbrOfParticipants(activity.getNbrOfParticipants());

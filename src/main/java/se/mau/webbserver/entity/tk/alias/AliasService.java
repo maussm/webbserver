@@ -29,10 +29,10 @@ public class AliasService {
     }
 
     public void addAlias(Alias alias) {
-        Optional<Alias> optionalAlias = repository.findById(alias.getName());
+        Optional<Alias> optionalAlias = repository.findById(alias.getDefinition());
 
         if(optionalAlias.isPresent()) {
-            throw new IllegalStateException(String.format("Alias with id %s already exists.", alias.getName()));
+            throw new IllegalStateException(String.format("Alias with id %s already exists.", alias.getDefinition()));
         }
 
         repository.save(alias);
