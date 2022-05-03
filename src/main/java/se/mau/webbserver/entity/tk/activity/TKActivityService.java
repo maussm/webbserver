@@ -6,20 +6,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TkActivityService {
-    private final TkActivityRepository repository;
+public class TKActivityService {
+    private final TKActivityRepository repository;
 
     @Autowired
-    public TkActivityService(TkActivityRepository repository) {
+    public TKActivityService(TKActivityRepository repository) {
         this.repository = repository;
     }
 
-    public List<TkActivity> getActivities() {
+    public List<TKActivity> getActivities() {
         return repository.findAll();
     }
 
-    public TkActivity getActivity(String name, String activityType) {
-        Optional<TkActivity> optionalActivity = repository.findByNameAndActivityType(name, activityType);
+    public TKActivity getActivity(String name, String activityType) {
+        Optional<TKActivity> optionalActivity = repository.findByNameAndActivityType(name, activityType);
 
         if(optionalActivity.isPresent()) {
             return optionalActivity.get();
@@ -30,8 +30,8 @@ public class TkActivityService {
         }
     }
 
-    public void addActivity(TkActivity activity) {
-        Optional<TkActivity> optionalActivity =
+    public void addActivity(TKActivity activity) {
+        Optional<TKActivity> optionalActivity =
             repository.findByNameAndActivityType(activity.getName(), activity.getActivityType());
 
         if(optionalActivity.isPresent()) {
@@ -43,7 +43,7 @@ public class TkActivityService {
     }
 
     public void deleteActivity(String name, String activityType) {
-        Optional<TkActivity> optionalActivity =
+        Optional<TKActivity> optionalActivity =
             repository.findByNameAndActivityType(name, activityType);
 
         if(optionalActivity.isEmpty()) {

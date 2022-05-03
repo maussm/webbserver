@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.mau.webbserver.entity.tk.activity.TKActivity;
-import se.mau.webbserver.entity.tk.activity.TkActivityService;
+import se.mau.webbserver.entity.tk.activity.TKActivityService;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/activity")
-public class TkActivityRestController {
-    private final TkActivityService service;
+public class TKActivityRestController {
+    private final TKActivityService service;
 
     @Autowired
-    public TkActivityRestController(TkActivityService service) {
+    public TKActivityRestController(TKActivityService service) {
         this.service = service;
     }
 
