@@ -34,7 +34,6 @@ public class ParticipantService {
         if(optionalParticipant.isPresent()) {
             throw new IllegalStateException(String.format("Participant with id %s already exist", participant.getId()));
         }
-
         repository.save(participant);
     }
 
@@ -44,7 +43,6 @@ public class ParticipantService {
         if(optionalParticipant.isEmpty()) {
             throw new IllegalStateException(String.format("Participant with id %s does not exist.", id));
         }
-
         repository.delete(optionalParticipant.get());
     }
 
@@ -60,7 +58,6 @@ public class ParticipantService {
             if(participant.getName() != null) {
                 _participant.setName(participant.getName());
             }
-
             repository.save(_participant);
         }
     }
