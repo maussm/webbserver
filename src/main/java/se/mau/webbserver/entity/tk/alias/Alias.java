@@ -1,5 +1,6 @@
 package se.mau.webbserver.entity.tk.alias;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,10 +13,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "tk_alias")
 public class Alias {
-    @Id
+    @Id @Column(name = "definition")
     private String definition;
+    @Column(name = "cost_center")
     private Long costCenter;
-    private String activityName;
+    @Column(name = "activity_id")
+    private Long activityReference;
 
     public String getDefinition() {
         return definition;
@@ -33,12 +36,12 @@ public class Alias {
         this.costCenter = costCenter;
     }
 
-    public String getActivityName() {
-        return activityName;
+    public Long getActivityReference() {
+        return activityReference;
     }
 
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
+    public void setActivityReference(Long activityReference) {
+        this.activityReference = activityReference;
     }
 
     @Override
@@ -46,11 +49,11 @@ public class Alias {
         if (this == o) return true;
         if (! (o instanceof Alias)) return false;
         Alias alias = (Alias) o;
-        return Objects.equals(definition, alias.definition) && Objects.equals(costCenter, alias.costCenter) && Objects.equals(activityName, alias.activityName);
+        return Objects.equals(definition, alias.definition) && Objects.equals(costCenter, alias.costCenter) && Objects.equals(activityReference, alias.activityReference);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(definition, costCenter, activityName);
+        return Objects.hash(definition, costCenter, activityReference);
     }
 }

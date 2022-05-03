@@ -58,8 +58,8 @@ public class AliasService {
             if(alias.getCostCenter() != null) {
                 _alias.setCostCenter(alias.getCostCenter());
             }
-            if(alias.getActivityName() != null) {
-                _alias.setActivityName(alias.getActivityName());
+            if(alias.getActivityReference() != null) {
+                _alias.setActivityReference(alias.getActivityReference());
             }
             repository.save(_alias);
         }
