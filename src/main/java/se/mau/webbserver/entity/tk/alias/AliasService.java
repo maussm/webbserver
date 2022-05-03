@@ -34,7 +34,6 @@ public class AliasService {
         if(optionalAlias.isPresent()) {
             throw new IllegalStateException(String.format("Alias with id %s already exists.", alias.getDefinition()));
         }
-
         repository.save(alias);
     }
 
@@ -44,7 +43,6 @@ public class AliasService {
         if(optionalAlias.isEmpty()) {
             throw new IllegalStateException(String.format("Alias with id %s does not exist.", name));
         }
-
         repository.delete(optionalAlias.get());
     }
 
@@ -54,7 +52,6 @@ public class AliasService {
         if(optionalAlias.isEmpty()) {
             throw new IllegalStateException(String.format("Alias with name %s does not exist.", name));
         }
-
         Alias _alias = optionalAlias.get();
 
         if(!(_alias.equals(alias))) {

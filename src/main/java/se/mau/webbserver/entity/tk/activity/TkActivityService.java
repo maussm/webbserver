@@ -39,7 +39,6 @@ public class TkActivityService {
                 "Activity with name %s and type %s already exist", activity.getName(), activity.getActivityType()
             ));
         }
-
         repository.save(activity);
     }
 

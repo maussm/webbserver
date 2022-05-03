@@ -43,7 +43,6 @@ public class ActivityTypeService {
                 activityType.getName(), activityType.getServiceType()
             ));
         }
-
         repository.save(activityType);
     }
 
