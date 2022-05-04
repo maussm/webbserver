@@ -16,12 +16,13 @@ public class Register {
         this.costCenterService = costCenterService;
     }
 
-    @GetMapping("/registrera_hand/{costCenterId}")
+    @GetMapping("/reg_hand/{costCenterId}")
     public String record_event(Model model, @PathVariable Long costCenterId) {
-        String response = "registrera_hand";
+        String response = "reg-handelse";
 
         String costCenterName = costCenterService.getCostCenterName(costCenterId);
         model.addAttribute("costCenterName", costCenterName);
+        model.addAttribute("costCenterId", costCenterId);
 
         if(costCenterName.isEmpty()) {
             response = "error";
@@ -29,12 +30,13 @@ public class Register {
         return response;
     }
 
-    @GetMapping("/registrera_del/{costCenterId}")
+    @GetMapping("/reg_del/{costCenterId}")
     public String record_participant(Model model, @PathVariable Long costCenterId) {
-        String response = "registrera_del";
+        String response = "reg-deltagare";
 
         String costCenterName = costCenterService.getCostCenterName(costCenterId);
         model.addAttribute("costCenterName", costCenterName);
+        model.addAttribute("costCenterId", costCenterId);
 
         if (costCenterName.isEmpty()) {
             response = "error";
