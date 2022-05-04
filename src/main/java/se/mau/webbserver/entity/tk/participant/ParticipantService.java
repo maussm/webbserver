@@ -1,4 +1,4 @@
-package se.mau.webbserver.entity.participant;
+package se.mau.webbserver.entity.tk.participant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

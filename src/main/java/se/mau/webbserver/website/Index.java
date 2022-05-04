@@ -17,7 +17,7 @@ public class Index {
 
     @GetMapping()
     public String index(Model model) {
-        List<CostCenter> costCenters = costCenterService.getCostCenter();
+        List<CostCenter> costCenters = costCenterService.getCostCenters();
         model.addAttribute("costCenters", costCenters);
         return "index";
     }

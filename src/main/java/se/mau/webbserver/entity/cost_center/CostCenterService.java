@@ -16,11 +16,11 @@ public class CostCenterService {
         this.repository = repository;
     }
 
-    public List<CostCenter> getCostCenter() {
+    public List<CostCenter> getCostCenters() {
         return repository.findAll();
     }
 
-    public CostCenter getCostCenter(Long id) {
+    public CostCenter getCostCenters(Long id) {
         Optional<CostCenter> optionalCostCenter = repository.findById(id);
 
         if(optionalCostCenter.isPresent()) {

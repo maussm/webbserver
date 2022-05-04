@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import se.mau.webbserver.entity.participant.Participant;
-import se.mau.webbserver.entity.participant.ParticipantService;
+import se.mau.webbserver.entity.tk.participant.Participant;
+import se.mau.webbserver.entity.tk.participant.ParticipantService;
 import java.util.List;
 
 @RestController

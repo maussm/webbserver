@@ -56,4 +56,8 @@ public class ActivityTypeService {
         }
         repository.delete(optionalActivityType.get());
     }
+
+    public void patchActivityType(Long id, ActivityType activityType) {
+        //TODO
+    }
 }

@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cost_center")
 public class CostCenterRestController {
+
     private final CostCenterService service;
 
     @Autowired
@@ -25,12 +26,12 @@ public class CostCenterRestController {
 
     @GetMapping
     public List<CostCenter> getCostCenters() {
-        return service.getCostCenter();
+        return service.getCostCenters();
     }
 
     @GetMapping("/{id}")
     public CostCenter getCostCenter(@PathVariable Long id) {
-        return service.getCostCenter(id);
+        return service.getCostCenters(id);
     }
 
     @PostMapping

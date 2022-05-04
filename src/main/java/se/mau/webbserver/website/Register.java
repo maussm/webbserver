@@ -36,12 +36,11 @@ public class Register {
         String costCenterName = costCenterService.getCostCenterName(costCenterId);
         model.addAttribute("costCenterName", costCenterName);
 
-        if(costCenterName.isEmpty()) {
+        if (costCenterName.isEmpty()) {
             response = "error";
         }
         return response;
     }
-
     public boolean checkName(String name) {
         return name != null;
     }

@@ -30,6 +30,18 @@ public class ActivityContentsService {
         }
     }
 
+    public ActivityContents getActivityContents(Long activityId) {
+        Optional<ActivityContents> optionalActivityContents =
+                repository.findById(activityId);
+
+        if(optionalActivityContents.isPresent()) {
+            return optionalActivityContents.get();
+        } else {
+            throw new IllegalStateException(String.format(
+                    "ActivityContents with activityId %s does not exist.", activityId));
+        }
+    }
+
     public void addActivityContents(ActivityContents activityContents) {
         Long participantId = activityContents.getParticipantId();
         Long activityId = activityContents.getActivityId();
@@ -55,6 +67,19 @@ public class ActivityContentsService {
             ));
         }
 
+        repository.delete(optionalActivityContents.get());
+    }
+
+
+    public void deleteActivityContents(Long activityId) {
+        Optional<ActivityContents> optionalActivityContents =
+                repository.findById(activityId);
+
+        if(optionalActivityContents.isEmpty()) {
+            throw new IllegalStateException(String.format(
+                    "Activity contents with activityId %s does not exist.", activityId
+            ));
+        }
         repository.delete(optionalActivityContents.get());
     }
 
