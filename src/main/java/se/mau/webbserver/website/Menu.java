@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import se.mau.webbserver.entity.cost_center.CostCenterService;
 
 @Controller
@@ -16,11 +16,11 @@ public class Menu {
         this.costCenterService = costCenterService;
     }
 
-    @GetMapping("/menu/{costCenterId}")
-    public String meny(Model model, @PathVariable Long costCenterId) {
-        String response = "registrera_del";
+    @GetMapping("/meny")
+    public String meny(Model model, @RequestParam Long vald_enhet) {
+        String response = "meny";
 
-        String costCenterName = costCenterService.getCostCenterName(costCenterId);
+        String costCenterName = costCenterService.getCostCenterName(vald_enhet);
         model.addAttribute("costCenterName", costCenterName);
 
         if(costCenterName == null) {
