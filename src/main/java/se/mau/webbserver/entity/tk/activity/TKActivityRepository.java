@@ -6,5 +6,5 @@ import java.util.Optional;
 
 @Repository
 public interface TKActivityRepository extends JpaRepository<TKActivity, Long> {
-    Optional<TKActivity> findByNameAndActivityType(String name, String activityType);
+    Optional<TKActivity> findByNameAndTypeId(String name, Long typeId);
 }

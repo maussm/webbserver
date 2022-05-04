@@ -28,8 +28,8 @@ public class TKActivityRestController {
     }
 
     @GetMapping("/{name}&{activityType}")
-    public TKActivity getActivities(@PathVariable String name, @PathVariable String activityType) {
-        return service.getActivity(name, activityType);
+    public TKActivity getActivities(@PathVariable String name, @PathVariable Long activityId) {
+        return service.getActivity(name, activityId);
     }
 
     @PostMapping
@@ -38,7 +38,7 @@ public class TKActivityRestController {
     }
 
     @DeleteMapping("/{name}&{activityType}")
-    public void deleteActivity(@PathVariable String name, @PathVariable String activityType) {
-        service.deleteActivity(name, activityType);
+    public void deleteActivity(@PathVariable String name, @PathVariable Long activityId) {
+        service.deleteActivity(name, activityId);
     }
 }

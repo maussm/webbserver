@@ -18,21 +18,21 @@ public class TKActivityService {
         return repository.findAll();
     }
 
-    public TKActivity getActivity(String name, String activityType) {
-        Optional<TKActivity> optionalActivity = repository.findByNameAndActivityType(name, activityType);
+    public TKActivity getActivity(String name, Long typeId) {
+        Optional<TKActivity> optionalActivity = repository.findByNameAndTypeId(name, typeId);
 
         if(optionalActivity.isPresent()) {
             return optionalActivity.get();
         } else {
             throw new IllegalStateException(String.format(
-                "Activity with name %s and type %s does not exist", name, activityType
+                "Activity with name %s and type %s does not exist", name, typeId
             ));
         }
     }
 
     public void addActivity(TKActivity activity) {
         Optional<TKActivity> optionalActivity =
-            repository.findByNameAndActivityType(activity.getName(), activity.getTypeId());
+            repository.findByNameAndTypeId(activity.getName(), activity.getTypeId());
 
         if(optionalActivity.isPresent()) {
             throw new IllegalStateException(String.format(
@@ -42,13 +42,13 @@ public class TKActivityService {
         repository.save(activity);
     }
 
-    public void deleteActivity(String name, String activityType) {
+    public void deleteActivity(String name, Long typeId) {
         Optional<TKActivity> optionalActivity =
-            repository.findByNameAndActivityType(name, activityType);
+            repository.findByNameAndTypeId(name, typeId);
 
         if(optionalActivity.isEmpty()) {
             throw new IllegalStateException(String.format(
-                "Activity with name %s and type %s does not exist", name, activityType
+                "Activity with name %s and type %s does not exist", name, typeId
             ));
         }
         repository.delete(optionalActivity.get());

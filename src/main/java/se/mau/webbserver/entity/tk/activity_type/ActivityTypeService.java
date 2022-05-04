@@ -14,22 +14,22 @@ public class ActivityTypeService {
         this.repository = repository;
     }
 
-    private Optional<ActivityType> findById(String name, String serviceName) {
-        return repository.findByNameAndServiceType(name, serviceName);
+    private Optional<ActivityType> findById(String name, Long serviceId) {
+        return repository.findByNameAndServiceId(name, serviceId);
     }
 
     public List<ActivityType> getActivityTypes() {
         return repository.findAll();
     }
 
-    public ActivityType getActivityType(String name, String serviceName) {
-        Optional<ActivityType> optionalActivityType = findById(name, serviceName);
+    public ActivityType getActivityType(String name, Long serviceId) {
+        Optional<ActivityType> optionalActivityType = findById(name, serviceId);
 
         if(optionalActivityType.isPresent()) {
             return optionalActivityType.get();
         } else {
             throw new IllegalStateException(String.format(
-                "Activity type with name %s and service %s does not exist", name, serviceName
+                "Activity type with name %s and service %s does not exist", name, serviceId
             ));
         }
     }
@@ -46,12 +46,12 @@ public class ActivityTypeService {
         repository.save(activityType);
     }
 
-    public void deleteActivityType(String name, String activityType) {
-        Optional<ActivityType> optionalActivityType = findById(name, activityType);
+    public void deleteActivityType(String name, Long serviceId) {
+        Optional<ActivityType> optionalActivityType = findById(name, serviceId);
 
         if(optionalActivityType.isEmpty()) {
             throw new IllegalStateException(String.format(
-                "Activity type with name %s and service %s does not exist", name, activityType
+                "Activity type with name %s and service %s does not exist", name, serviceId
             ));
         }
         repository.delete(optionalActivityType.get());

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 /**
- * Fourth layer of the service-catalogu
+ * Fourth layer of the service-catalogue
  */
 
 @Entity

@@ -15,8 +15,6 @@ public class CostCenter {
     private Long id;
     @Column (name = "name")
     private String name;
-    @Column (name = "location")
-    private String location;
 
     public Long getId() {
         return id;
@@ -34,23 +32,15 @@ public class CostCenter {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (! (o instanceof CostCenter that)) return false;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(location, that.location);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, location);
+        return Objects.hash(id, name);
     }
 }
