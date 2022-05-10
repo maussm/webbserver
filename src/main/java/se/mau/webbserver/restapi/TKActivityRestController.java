@@ -3,6 +3,7 @@ package se.mau.webbserver.restapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,30 +17,35 @@ import java.util.List;
 @RequestMapping("/api/tk_activity")
 public class TKActivityRestController {
 
-    private final TKActivityService service;
+    private final TKActivityService tkActivityService;
 
     @Autowired
-    public TKActivityRestController(TKActivityService service) {
-        this.service = service;
+    public TKActivityRestController(TKActivityService tkActivityService) {
+        this.tkActivityService = tkActivityService;
     }
 
     @GetMapping
-    public List<TKActivity> getTKactivities() {
-        return service.getTKactivities();
+    public List<TKActivity> getTKActivities() {
+        return tkActivityService.getTKActivities();
     }
 
-    @GetMapping("/{name}&{activityType}")
-    public TKActivity getTKactivities(@PathVariable String name, @PathVariable Long activityId) {
-        return service.getTKactivities(name, activityId);
+    @GetMapping("/{id}")
+    public TKActivity getTKActivities(@PathVariable Integer id) {
+        return tkActivityService.getTKActivities(id);
     }
 
     @PostMapping
-    public void addTKActivity(@RequestBody TKActivity activity) {
-        service.addTKactivity(activity);
+    public void addTKActivity(@RequestBody TKActivity tkActivity) {
+        tkActivityService.addTKActivity(tkActivity);
     }
 
-    @DeleteMapping("/{name}&{activityType}")
-    public void deleteTKactivity(@PathVariable String name, @PathVariable Long activityId) {
-        service.deleteTKactivity(name, activityId);
+    @DeleteMapping("/{id}")
+    public void deleteTKactivity(@PathVariable Integer id) {
+        tkActivityService.deleteTKActivity(id);
+    }
+
+    @PatchMapping("/{id}")
+    public void patchService(@PathVariable Integer id, @RequestBody TKActivity tkActivity) {
+        tkActivityService.patchTKActivity(id, tkActivity);
     }
 }

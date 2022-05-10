@@ -9,19 +9,19 @@ import java.util.Optional;
 @Service
 public class CostCenterService {
 
-    private final CostCenterRepository repository;
+    private final CostCenterRepository costCenterRepository;
 
     @Autowired
-    public CostCenterService(CostCenterRepository repository) {
-        this.repository = repository;
+    public CostCenterService(CostCenterRepository costCenterRepository) {
+        this.costCenterRepository = costCenterRepository;
     }
 
     public List<CostCenter> getCostCenters() {
-        return repository.findAll();
+        return costCenterRepository.findAll();
     }
 
-    public CostCenter getCostCenters(Long id) {
-        Optional<CostCenter> optionalCostCenter = repository.findById(id);
+    public CostCenter getCostCenters(Integer id) {
+        Optional<CostCenter> optionalCostCenter = costCenterRepository.findById(id);
 
         if(optionalCostCenter.isPresent()) {
             return optionalCostCenter.get();
@@ -31,27 +31,27 @@ public class CostCenterService {
     }
 
     public void addCostCenter(CostCenter costCenter) {
-        Optional<CostCenter> optionalCostCenter = repository.findById(costCenter.getId());
+        Optional<CostCenter> optionalCostCenter = costCenterRepository.findById(costCenter.getId());
 
         if(optionalCostCenter.isPresent()) {
             throw new IllegalStateException(String.format("Cost center with id %s already exists.", costCenter.getId()));
         }
 
-        repository.save(costCenter);
+        costCenterRepository.save(costCenter);
     }
 
-    public void deleteCostCenter(Long id) {
-        Optional<CostCenter> optionalCostCenter = repository.findById(id);
+    public void deleteCostCenter(Integer id) {
+        Optional<CostCenter> optionalCostCenter = costCenterRepository.findById(id);
 
         if(optionalCostCenter.isEmpty()) {
             throw new IllegalStateException(String.format("Cost center with id %s does not exist.", id));
         }
 
-        repository.delete(optionalCostCenter.get());
+        costCenterRepository.delete(optionalCostCenter.get());
     }
 
-    public void patchCostCenter(Long id, CostCenter costCenter) {
-        Optional<CostCenter> optionalCostCenter = repository.findById(id);
+    public void patchCostCenter(Integer id, CostCenter costCenter) {
+        Optional<CostCenter> optionalCostCenter = costCenterRepository.findById(id);
 
         if(optionalCostCenter.isEmpty()) {
             throw new IllegalStateException(String.format("Cost center with id %s does not exist.", id));
@@ -59,16 +59,14 @@ public class CostCenterService {
 
         CostCenter _costCenter = optionalCostCenter.get();
 
-        if(!(_costCenter.equals(costCenter))) {
-            if(costCenter.getName() != null) {
-                _costCenter.setName(costCenter.getName());
-            }
-            repository.save(_costCenter);
+        if(costCenter.getName() != null) {
+            _costCenter.setName(costCenter.getName());
         }
+        costCenterRepository.save(_costCenter);
     }
 
-    public String getCostCenterName(Long id) {
-        Optional<CostCenter> costCenter = repository.findById(id);
+    public String getCostCenterName(Integer id) {
+        Optional<CostCenter> costCenter = costCenterRepository.findById(id);
         String name = null;
 
         if(costCenter.isPresent()) {

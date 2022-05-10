@@ -7,50 +7,56 @@ import java.util.Optional;
 
 @Service
 public class TKActivityService {
-    private final TKActivityRepository repository;
+    private final TKActivityRepository tkActivityRepository;
 
     @Autowired
-    public TKActivityService(TKActivityRepository repository) {
-        this.repository = repository;
+    public TKActivityService(TKActivityRepository tkActivityRepository) {
+        this.tkActivityRepository = tkActivityRepository;
     }
 
-    public List<TKActivity> getTKactivities() {
-        return repository.findAll();
+    public List<TKActivity> getTKActivities() {
+        return tkActivityRepository.findAll();
     }
 
-    public TKActivity getTKactivities(String name, Long typeId) {
-        Optional<TKActivity> optionalActivity = repository.findByNameAndTypeId(name, typeId);
+    public TKActivity getTKActivities(Integer id) {
+        Optional<TKActivity> optionalActivity = tkActivityRepository.findByInternalId(id);
 
         if(optionalActivity.isPresent()) {
             return optionalActivity.get();
         } else {
-            throw new IllegalStateException(String.format(
-                "Activity with name %s and type %s does not exist", name, typeId
-            ));
+            throw new IllegalStateException(String.format("Activity with id %s does not exist", id));
         }
     }
 
-    public void addTKactivity(TKActivity activity) {
-        Optional<TKActivity> optionalActivity =
-            repository.findByNameAndTypeId(activity.getName(), activity.getTypeId());
+    public void addTKActivity(TKActivity tkActivity) {
+        Optional<TKActivity> optionalActivity = tkActivityRepository.findById(tkActivity.getId());
 
         if(optionalActivity.isPresent()) {
-            throw new IllegalStateException(String.format(
-                "Activity with name %s and type %s already exist", activity.getName(), activity.getTypeId()
-            ));
+            throw new IllegalStateException(String.format("Activity with id %s already exist", tkActivity.getInternalId()));
         }
-        repository.save(activity);
+        tkActivityRepository.save(tkActivity);
     }
 
-    public void deleteTKactivity(String name, Long typeId) {
-        Optional<TKActivity> optionalActivity =
-            repository.findByNameAndTypeId(name, typeId);
+    public void deleteTKActivity(Integer id) {
+        Optional<TKActivity> optionalActivity = tkActivityRepository.findByInternalId(id);
 
         if(optionalActivity.isEmpty()) {
-            throw new IllegalStateException(String.format(
-                "Activity with name %s and type %s does not exist", name, typeId
-            ));
+            throw new IllegalStateException(String.format("Activity with id %s does not exist", id));
         }
-        repository.delete(optionalActivity.get());
+        tkActivityRepository.delete(optionalActivity.get());
+    }
+
+    public void patchTKActivity(Integer id, TKActivity tkActivity) {
+        Optional<TKActivity> optionalTKActivity = tkActivityRepository.findByInternalId(id);
+
+        if(optionalTKActivity.isEmpty()) {
+            throw new IllegalStateException(String.format("Activity with id %s does not exist.", id));
+        }
+
+        TKActivity _tkActivity = optionalTKActivity.get();
+
+        if(tkActivity.getIdExt() != null) {
+            _tkActivity.setIdExt(tkActivity.getIdExt());
+        }
     }
 }

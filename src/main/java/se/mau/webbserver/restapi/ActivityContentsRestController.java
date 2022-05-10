@@ -31,8 +31,8 @@ public class ActivityContentsRestController {
     }
 
     @GetMapping("/{id}")
-    public ActivityContents getActivityContents(@PathVariable Long activityId) {
-        return service.getActivityContents(activityId);
+    public ActivityContents getActivityContents(@PathVariable Integer id) {
+        return service.getActivityContents(id);
     }
 
     @PostMapping
@@ -41,12 +41,7 @@ public class ActivityContentsRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteActivityContents(@PathVariable Long activityId) {
-        service.deleteActivityContents(activityId);
-    }
-
-    @PatchMapping("/{id}")
-    public void patchActivityContents(@PathVariable Long activityId, Long participantId, @RequestBody ActivityContents activityContents) {
-        service.patchActivityContents(participantId, activityId, activityContents);
+    public void deleteActivityContents(@PathVariable Integer id) {
+        service.deleteActivityContents(id);
     }
 }

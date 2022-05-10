@@ -17,7 +17,7 @@ public class FollowUp {
     }
 
     @GetMapping("/foljaupp/{costCenterId}")
-    public String foljaUpp(Model model, @PathVariable Long costCenterId) {
+    public String foljaUpp(Model model, @PathVariable Integer costCenterId) {
         String response = "foljaupp";
 
         String costCenterName = costCenterService.getCostCenterName(costCenterId);

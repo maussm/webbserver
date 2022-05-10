@@ -31,7 +31,7 @@ public class ActivityRestController {
     }
 
     @GetMapping("/{id}")
-    public Activity getActivity(@PathVariable Long id) {
+    public Activity getActivity(@PathVariable Integer id) {
         return activityService.getActivity(id);
     }
 
@@ -41,12 +41,12 @@ public class ActivityRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteActivity(@PathVariable Long id) {
+    public void deleteActivity(@PathVariable Integer id) {
         activityService.deleteActivity(id);
     }
 
     @PatchMapping("/{id}")
-    public void patchActivity(@PathVariable Long id, @RequestBody Activity activity) {
+    public void patchActivity(@PathVariable Integer id, @RequestBody Activity activity) {
         activityService.patchActivity(id, activity);
     }
 }

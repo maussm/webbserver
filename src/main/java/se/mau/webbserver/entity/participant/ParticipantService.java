@@ -7,19 +7,19 @@ import java.util.Optional;
 
 @Service
 public class ParticipantService {
-    private final ParticipantRepository repository;
+    private final ParticipantRepository participantRepository;
 
     @Autowired
-    public ParticipantService(ParticipantRepository repository) {
-        this.repository = repository;
+    public ParticipantService(ParticipantRepository participantRepository) {
+        this.participantRepository = participantRepository;
     }
 
     public List<Participant> getParticipants() {
-        return repository.findAll();
+        return participantRepository.findAll();
     }
 
-    public Participant getParticipant(Long id) {
-        Optional<Participant> optionalParticipant = repository.findById(id);
+    public Participant getParticipant(Integer id) {
+        Optional<Participant> optionalParticipant = participantRepository.findById(id);
 
         if(optionalParticipant.isPresent()) {
             return optionalParticipant.get();
@@ -29,36 +29,34 @@ public class ParticipantService {
     }
 
     public void addParticipant(Participant participant) {
-        Optional<Participant> optionalParticipant = repository.findById(participant.getId());
+        Optional<Participant> optionalParticipant = participantRepository.findById(participant.getId());
 
         if(optionalParticipant.isPresent()) {
             throw new IllegalStateException(String.format("Participant with id %s already exist", participant.getId()));
         }
-        repository.save(participant);
+        participantRepository.save(participant);
     }
 
-    public void deleteParticipant(Long id) {
-        Optional<Participant> optionalParticipant = repository.findById(id);
+    public void deleteParticipant(Integer id) {
+        Optional<Participant> optionalParticipant = participantRepository.findById(id);
 
         if(optionalParticipant.isEmpty()) {
             throw new IllegalStateException(String.format("Participant with id %s does not exist.", id));
         }
-        repository.delete(optionalParticipant.get());
+        participantRepository.delete(optionalParticipant.get());
     }
 
-    public void patchParticipant(Long id, Participant participant) {
-        Optional<Participant> optionalParticipant = repository.findById(id);
+    public void patchParticipant(Integer id, Participant participant) {
+        Optional<Participant> optionalParticipant = participantRepository.findById(id);
 
         if(optionalParticipant.isEmpty()) {
             throw new IllegalStateException(String.format("Participant with id %s does not exist.", id));
         }
 
         Participant _participant = optionalParticipant.get();
-        if(!(_participant.equals(participant))) {
-            if(participant.getName() != null) {
-                _participant.setName(participant.getName());
-            }
-            repository.save(_participant);
+        if(participant.getName() != null) {
+            _participant.setName(participant.getName());
         }
+        participantRepository.save(_participant);
     }
 }

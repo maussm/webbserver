@@ -7,102 +7,44 @@ import java.util.Optional;
 
 @Service
 public class ActivityContentsService {
-    private final ActivityContentsRepository repository;
+    private final ActivityContentsRepository activityContentsRepository;
 
     @Autowired
-    public ActivityContentsService(ActivityContentsRepository repository) {
-        this.repository = repository;
+    public ActivityContentsService(ActivityContentsRepository activityContentsRepository) {
+        this.activityContentsRepository = activityContentsRepository;
     }
 
     public List<ActivityContents> getActivityContents() {
-        return repository.findAll();
+        return activityContentsRepository.findAll();
     }
 
-    public ActivityContents getActivityContents(Long participantId, Long activityId) {
-        Optional<ActivityContents> optionalActivityContents =
-            repository.findByParticipantIdAndActivityId(participantId, activityId);
+    public ActivityContents getActivityContents(Integer id) {
+        Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByInternalId(id);
 
         if(optionalActivityContents.isPresent()) {
             return optionalActivityContents.get();
         } else {
-            throw new IllegalStateException(String.format(
-                "ActivityContents with participantId %s and activityId %s does not exist.", participantId, activityId));
-        }
-    }
-
-    public ActivityContents getActivityContents(Long activityId) {
-        Optional<ActivityContents> optionalActivityContents =
-                repository.findById(activityId);
-
-        if(optionalActivityContents.isPresent()) {
-            return optionalActivityContents.get();
-        } else {
-            throw new IllegalStateException(String.format(
-                    "ActivityContents with activityId %s does not exist.", activityId));
+            throw new IllegalStateException(String.format("ActivityContents with id %s does not exist.", id));
         }
     }
 
     public void addActivityContents(ActivityContents activityContents) {
-        Long participantId = activityContents.getParticipantId();
-        Long activityId = activityContents.getActivityId();
-        Optional<ActivityContents> optionalActivityContents =
-            repository.findByParticipantIdAndActivityId(participantId, activityId);
+        Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findById(activityContents.getId());
 
         if(optionalActivityContents.isPresent()) {
-            throw new IllegalStateException(String.format(
-                "ActivityContents with participantId %s and activityId %s already exists.", participantId, activityId
-            ));
+            throw new IllegalStateException(String.format("ActivityContents with id %s already exists.", activityContents.getInternalId()));
         }
 
-        repository.save(activityContents);
+        activityContentsRepository.save(activityContents);
     }
 
-    public void deleteActivityContents(Long participantId, Long activityId) {
-        Optional<ActivityContents> optionalActivityContents =
-            repository.findByParticipantIdAndActivityId(participantId, activityId);
+    public void deleteActivityContents(Integer id) {
+        Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByInternalId(id);
 
         if(optionalActivityContents.isEmpty()) {
-            throw new IllegalStateException(String.format(
-                "Activity contents with participantId %s and activityId %s does not exist.", participantId, activityId
-            ));
+            throw new IllegalStateException(String.format("Activity contents with id %s does not exist.", id));
         }
 
-        repository.delete(optionalActivityContents.get());
-    }
-
-
-    public void deleteActivityContents(Long activityId) {
-        Optional<ActivityContents> optionalActivityContents =
-                repository.findById(activityId);
-
-        if(optionalActivityContents.isEmpty()) {
-            throw new IllegalStateException(String.format(
-                    "Activity contents with activityId %s does not exist.", activityId
-            ));
-        }
-        repository.delete(optionalActivityContents.get());
-    }
-
-    public void patchActivityContents(Long participantId, Long activityId, ActivityContents activityContents) {
-        Optional<ActivityContents> optionalActivityContents =
-            repository.findByParticipantIdAndActivityId(participantId, activityId);
-
-        if(optionalActivityContents.isEmpty()) {
-            throw new IllegalStateException(String.format(
-                "Activity contents with participantId %s and activityId %s does not exist.", participantId, activityId)
-            );
-        }
-
-        ActivityContents _activity = optionalActivityContents.get();
-
-        if(!(_activity.equals(activityContents))) {
-            if(activityContents.getParticipantId() != null) {
-                _activity.setParticipantId(activityContents.getParticipantId());
-            }
-            if(activityContents.getActivityId() != null) {
-                _activity.setActivityId(activityContents.getActivityId());
-            }
-            repository.save(_activity);
-        }
+        activityContentsRepository.delete(optionalActivityContents.get());
     }
 }

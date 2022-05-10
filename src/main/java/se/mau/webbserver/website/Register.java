@@ -17,7 +17,7 @@ public class Register {
     }
 
     @GetMapping("/reg_hand/{costCenterId}")
-    public String record_event(Model model, @PathVariable Long costCenterId) {
+    public String record_event(Model model, @PathVariable Integer costCenterId) {
         String response = "reg-handelse";
 
         String costCenterName = costCenterService.getCostCenterName(costCenterId);
@@ -31,7 +31,7 @@ public class Register {
     }
 
     @GetMapping("/reg_del/{costCenterId}")
-    public String record_participant(Model model, @PathVariable Long costCenterId) {
+    public String record_participant(Model model, @PathVariable Integer costCenterId) {
         String response = "reg-deltagare";
 
         String costCenterName = costCenterService.getCostCenterName(costCenterId);

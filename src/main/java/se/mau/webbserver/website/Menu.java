@@ -23,12 +23,12 @@ public class Menu {
 
 
     @GetMapping("/meny")
-    public String menyRedirect(@RequestParam Long vald_enhet) {
+    public String menyRedirect(@RequestParam Integer vald_enhet) {
         return "redirect:/meny/" + vald_enhet;
     }
 
     @GetMapping("/meny/{vald_enhet}")
-    public String meny(Model model, @PathVariable Long vald_enhet) {
+    public String meny(Model model, @PathVariable Integer vald_enhet) {
         String response = "meny";
 
         String costCenterName = costCenterService.getCostCenterName(vald_enhet);
