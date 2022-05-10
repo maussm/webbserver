@@ -30,7 +30,7 @@ public class ServiceRestController {
         return serviceService.getService();
     }
 
-    @GetMapping
+    @GetMapping("/{name}")
     public Service getService(String name) {
         return serviceService.getService(name);
     }
@@ -44,6 +44,7 @@ public class ServiceRestController {
     public void deleteService(@PathVariable String name) {
         serviceService.deleteService(name);
     }
+
     @PatchMapping
     public void patchService(@PathVariable String name, @RequestBody Service service) {
         serviceService.serviceService(service);

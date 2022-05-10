@@ -13,8 +13,9 @@ import se.mau.webbserver.entity.tk.activity.TKActivityService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/activity")
+@RequestMapping("/api/tk_activity")
 public class TKActivityRestController {
+
     private final TKActivityService service;
 
     @Autowired
@@ -23,22 +24,22 @@ public class TKActivityRestController {
     }
 
     @GetMapping
-    public List<TKActivity> getActivities() {
-        return service.getActivities();
+    public List<TKActivity> getTKactivities() {
+        return service.getTKactivities();
     }
 
     @GetMapping("/{name}&{activityType}")
-    public TKActivity getActivities(@PathVariable String name, @PathVariable Long activityId) {
-        return service.getActivity(name, activityId);
+    public TKActivity getTKactivities(@PathVariable String name, @PathVariable Long activityId) {
+        return service.getTKactivities(name, activityId);
     }
 
     @PostMapping
-    public void addActivity(@RequestBody TKActivity activity) {
-        service.addActivity(activity);
+    public void addTKActivity(@RequestBody TKActivity activity) {
+        service.addTKactivity(activity);
     }
 
     @DeleteMapping("/{name}&{activityType}")
-    public void deleteActivity(@PathVariable String name, @PathVariable Long activityId) {
-        service.deleteActivity(name, activityId);
+    public void deleteTKactivity(@PathVariable String name, @PathVariable Long activityId) {
+        service.deleteTKactivity(name, activityId);
     }
 }

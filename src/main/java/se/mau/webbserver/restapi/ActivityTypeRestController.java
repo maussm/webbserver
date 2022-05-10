@@ -24,11 +24,11 @@ public class ActivityTypeRestController {
     public ActivityTypeRestController(ActivityTypeService service) {
         this.service = service;
     }
-
+    /*
     @GetMapping
     public List<ActivityType> getActivityTypes() {
         return service.getActivityTypes();
-    }
+    }*/
 
     @GetMapping
     public ActivityType getActivityType(String name, Long serviceId) {

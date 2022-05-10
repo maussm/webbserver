@@ -1,6 +1,7 @@
 package se.mau.webbserver.restapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,8 @@ public class CategoryRestController {
     public List<Category> getCategories() {
         return service.getCategory();
     }
-    @GetMapping
+
+    @GetMapping("/{name}")
     public Category getCategory(String name) {
         return service.getCategory(name);
     }
@@ -38,7 +40,7 @@ public class CategoryRestController {
         service.addCategory(category);
     }
 
-    @PostMapping
+    @DeleteMapping
     public void deleteCategory(@PathVariable String name) {
         service.deleteCategory(name);
     }

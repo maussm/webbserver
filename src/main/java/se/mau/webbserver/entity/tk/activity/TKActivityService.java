@@ -14,11 +14,11 @@ public class TKActivityService {
         this.repository = repository;
     }
 
-    public List<TKActivity> getActivities() {
+    public List<TKActivity> getTKactivities() {
         return repository.findAll();
     }
 
-    public TKActivity getActivity(String name, Long typeId) {
+    public TKActivity getTKactivities(String name, Long typeId) {
         Optional<TKActivity> optionalActivity = repository.findByNameAndTypeId(name, typeId);
 
         if(optionalActivity.isPresent()) {
@@ -30,7 +30,7 @@ public class TKActivityService {
         }
     }
 
-    public void addActivity(TKActivity activity) {
+    public void addTKactivity(TKActivity activity) {
         Optional<TKActivity> optionalActivity =
             repository.findByNameAndTypeId(activity.getName(), activity.getTypeId());
 
@@ -42,7 +42,7 @@ public class TKActivityService {
         repository.save(activity);
     }
 
-    public void deleteActivity(String name, Long typeId) {
+    public void deleteTKactivity(String name, Long typeId) {
         Optional<TKActivity> optionalActivity =
             repository.findByNameAndTypeId(name, typeId);
 
