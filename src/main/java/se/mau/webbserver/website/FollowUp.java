@@ -5,25 +5,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import se.mau.webbserver.entity.cost_center.CostCenterService;
 
 @Controller
-public class FollowUp {
-    private CostCenterService costCenterService;
+public class FollowUp extends Default {
 
     @Autowired
-    public FollowUp(CostCenterService costCenterService) {
-        this.costCenterService = costCenterService;
+    protected FollowUp(CostCenterService costCenterService) {
+        super(costCenterService);
+    }
+
+    @GetMapping("/foljaupp")
+    public String ankommande(@RequestParam Integer vald_enhet) {
+        return "redirect:/foljaupp/" + vald_enhet;
     }
 
     @GetMapping("/foljaupp/{costCenterId}")
-    public String foljaUpp(Model model, @PathVariable Integer costCenterId) {
+    public String ankommande(Model model, @PathVariable Integer costCenterId) {
         String response = "foljaupp";
-
-        String costCenterName = costCenterService.getCostCenterName(costCenterId);
-        model.addAttribute("costCenterName", costCenterName);
-
-        if(costCenterName.isEmpty()) {
+        model = super.setModel(model, costCenterId);
+        if(model == null) {
             response = "error";
         }
         return response;
