@@ -32,23 +32,12 @@ public class Category {
     @Column(name = "id_ext")
     private Long idExt;
 
-    @OneToMany(mappedBy = "c")
-    private Set<Service> tkServices = new LinkedHashSet<>();
-
-    public Set<Service> getTkServices() {
-        return tkServices;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTkServices(Set<Service> tkServices) {
-        this.tkServices = tkServices;
-    }
-
-    public Long getIdExt() {
-        return idExt;
-    }
-
-    public void setIdExt(Long idExt) {
-        this.idExt = idExt;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -59,11 +48,11 @@ public class Category {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getIdExt() {
+        return idExt;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdExt(Long idExt) {
+        this.idExt = idExt;
     }
 }

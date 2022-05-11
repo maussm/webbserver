@@ -3,7 +3,6 @@ package se.mau.webbserver.entity.activity_contents;
 import org.hibernate.Hibernate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 

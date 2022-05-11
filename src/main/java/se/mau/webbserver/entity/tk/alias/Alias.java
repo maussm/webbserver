@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -21,14 +20,12 @@ public class Alias {
     @EmbeddedId
     private AliasId id;
 
-    @MapsId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "cost_center", nullable = false)
+    @JoinColumn(name = "cost_center", nullable = false, insertable = false, updatable = false)
     private CostCenter costCenter;
 
-    @MapsId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "activity_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "activity_id", nullable = false, referencedColumnName = "id", insertable = false, updatable = false)
     private TKActivity activity;
 
     @Column(name = "id", nullable = false)
@@ -37,41 +34,12 @@ public class Alias {
     @Column(name = "id_ext")
     private Long idExt;
 
-    @MapsId("activityId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "activity_id")
-    private TKActivity TKActivity;
-
-    public se.mau.webbserver.entity.tk.activity.TKActivity getTKActivity() {
-        return TKActivity;
+    public AliasId getId() {
+        return id;
     }
 
-    public void setTKActivity(se.mau.webbserver.entity.tk.activity.TKActivity TKActivity) {
-        this.TKActivity = TKActivity;
-    }
-
-    public Long getIdExt() {
-        return idExt;
-    }
-
-    public void setIdExt(Long idExt) {
-        this.idExt = idExt;
-    }
-
-    public Integer getInternalId() {
-        return internalId;
-    }
-
-    public void setInternalId(Integer id1) {
-        this.internalId = id1;
-    }
-
-    public TKActivity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(TKActivity activity) {
-        this.activity = activity;
+    public void setId(AliasId id) {
+        this.id = id;
     }
 
     public CostCenter getCostCenter() {
@@ -82,11 +50,27 @@ public class Alias {
         this.costCenter = costCenter;
     }
 
-    public AliasId getId() {
-        return id;
+    public TKActivity getActivity() {
+        return activity;
     }
 
-    public void setId(AliasId id) {
-        this.id = id;
+    public void setActivity(TKActivity activity) {
+        this.activity = activity;
+    }
+
+    public Integer getInternalId() {
+        return internalId;
+    }
+
+    public void setInternalId(Integer internalId) {
+        this.internalId = internalId;
+    }
+
+    public Long getIdExt() {
+        return idExt;
+    }
+
+    public void setIdExt(Long idExt) {
+        this.idExt = idExt;
     }
 }

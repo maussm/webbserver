@@ -25,27 +25,19 @@ public class Attendance {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "participant", nullable = false)
+    @JoinColumn(name = "participant", nullable = false, insertable = false, updatable = false)
     private Participant participant;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "c_id", nullable = false)
+    @JoinColumn(name = "c_id", nullable = false, insertable = false, updatable = false)
     private CostCenter c;
 
-    public CostCenter getC() {
-        return c;
+    public Integer getId() {
+        return id;
     }
 
-    public void setC(CostCenter c) {
-        this.c = c;
-    }
-
-    public Participant getParticipant() {
-        return participant;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getDate() {
@@ -56,11 +48,19 @@ public class Attendance {
         this.date = date;
     }
 
-    public Integer getId() {
-        return id;
+    public Participant getParticipant() {
+        return participant;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
+    }
+
+    public CostCenter getC() {
+        return c;
+    }
+
+    public void setC(CostCenter c) {
+        this.c = c;
     }
 }

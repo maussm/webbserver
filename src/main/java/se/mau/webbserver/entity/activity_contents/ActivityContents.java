@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -17,46 +16,19 @@ import java.io.Serializable;
 @Table(name = "activity_contents")
 @IdClass(ActivityContents.class)
 public class ActivityContents implements Serializable {
-
     @EmbeddedId
     private ActivityContentsId id;
 
-    @MapsId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "activity_id", nullable = false)
-    private Activity activity;
+    @JoinColumn(name = "activity_id", nullable = false, insertable = false, updatable = false)
+    private Activity activityId;
 
-    @MapsId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "participant_id", nullable = false)
-    private Participant participant;
+    @JoinColumn(name = "participant_id", nullable = false, insertable = false, updatable = false)
+    private Participant participantId;
 
     @Column(name = "id", nullable = false)
     private Integer internalId;
-
-    public Integer getInternalId() {
-        return internalId;
-    }
-
-    public void setInternalId(Integer id1) {
-        this.internalId = id1;
-    }
-
-    public Participant getParticipant() {
-        return participant;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
-    }
-
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
 
     public ActivityContentsId getId() {
         return id;
@@ -64,5 +36,29 @@ public class ActivityContents implements Serializable {
 
     public void setId(ActivityContentsId id) {
         this.id = id;
+    }
+
+    public Activity getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Activity activity) {
+        this.activityId = activity;
+    }
+
+    public Participant getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(Participant participant) {
+        this.participantId = participant;
+    }
+
+    public Integer getInternalId() {
+        return internalId;
+    }
+
+    public void setInternalId(Integer id) {
+        this.internalId = id;
     }
 }
