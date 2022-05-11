@@ -22,12 +22,12 @@ public class Menu {
     }
 
 
-    @GetMapping("/meny")
+    @GetMapping("/reg_handelse")
     public String menyRedirect(@RequestParam Integer vald_enhet) {
-        return "redirect:/meny/" + vald_enhet;
+        return "redirect:/reg_handelse/" + vald_enhet;
     }
 
-    @GetMapping("/meny/{vald_enhet}")
+    @GetMapping("/reg_handelse/{vald_enhet}")
     public String meny(Model model, @PathVariable Integer vald_enhet) {
         String response = "meny";
 
