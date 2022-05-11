@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 public class Menu {
+
     private final CostCenterService costCenterService;
 
     @Autowired
