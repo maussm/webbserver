@@ -1,6 +1,8 @@
 package se.mau.webbserver.entity.tk.alias;
 
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ public class AliasId implements Serializable {
     @Column(name = "activity_id", nullable = false)
     private Integer activityId;
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "definition", nullable = false)
     private String definition;
 

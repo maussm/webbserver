@@ -1,5 +1,6 @@
 package se.mau.webbserver.entity.tk.category;
 
+import org.hibernate.annotations.Type;
 import se.mau.webbserver.entity.tk.service.Service;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ public class Category {
     private Integer id;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "name", nullable = false)
     private String name;
 

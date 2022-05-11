@@ -1,6 +1,8 @@
 package se.mau.webbserver.entity.tk.service;
 
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import java.util.Objects;
 public class ServiceId implements Serializable {
     private static final long serialVersionUID = - 8847516353489218073L;
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "c_id", nullable = false)

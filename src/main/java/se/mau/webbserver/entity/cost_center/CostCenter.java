@@ -1,5 +1,7 @@
 package se.mau.webbserver.entity.cost_center;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ public class CostCenter {
     private Integer id;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "name", nullable = false)
     private String name;
 
