@@ -1,4 +1,4 @@
-package se.mau.webbserver.entity.tk.participant;
+package se.mau.webbserver.entity.participant;
 
 import javax.persistence.*;
 import java.util.Objects;
