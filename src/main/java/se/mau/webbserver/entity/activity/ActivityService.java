@@ -37,12 +37,6 @@ public class ActivityService {
     }
 
     public void addActivity(Activity activity) {
-        Optional<Activity> optionalActivity = activityRepository.findById(activity.getId());
-
-        if(optionalActivity.isPresent()) {
-            throw new IllegalStateException(String.format("Activity with %s already exists.", activity.getId()));
-        }
-
         activityRepository.save(activity);
     }
 

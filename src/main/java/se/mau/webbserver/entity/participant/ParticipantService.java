@@ -29,11 +29,6 @@ public class ParticipantService {
     }
 
     public void addParticipant(Participant participant) {
-        Optional<Participant> optionalParticipant = participantRepository.findById(participant.getId());
-
-        if(optionalParticipant.isPresent()) {
-            throw new IllegalStateException(String.format("Participant with id %s already exist", participant.getId()));
-        }
         participantRepository.save(participant);
     }
 

@@ -35,11 +35,6 @@ public class AttendanceService {
     }
 
     public void addAttendance(Attendance attendance) {
-        Optional<Attendance> optionalAttendance = attendanceRepository.findById(attendance.getId());
-
-        if(optionalAttendance.isPresent()) {
-            throw new IllegalStateException(String.format("Attendance with %s already exists.", attendance.getId()));
-        }
         attendanceRepository.save(attendance);
     }
 

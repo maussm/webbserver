@@ -31,12 +31,6 @@ public class CostCenterService {
     }
 
     public void addCostCenter(CostCenter costCenter) {
-        Optional<CostCenter> optionalCostCenter = costCenterRepository.findById(costCenter.getId());
-
-        if(optionalCostCenter.isPresent()) {
-            throw new IllegalStateException(String.format("Cost center with id %s already exists.", costCenter.getId()));
-        }
-
         costCenterRepository.save(costCenter);
     }
 

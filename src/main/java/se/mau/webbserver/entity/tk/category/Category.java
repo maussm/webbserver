@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -22,7 +23,8 @@ import java.util.Set;
 @Table(name = "tk_category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "id_generator", sequenceName = "tk_category_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
 
