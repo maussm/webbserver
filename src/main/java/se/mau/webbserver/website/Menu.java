@@ -7,13 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.mau.webbserver.entity.cost_center.CostCenterService;
+import se.mau.webbserver.entity.tk.alias.Alias;
+import se.mau.webbserver.entity.tk.alias.AliasService;
+
+import java.util.List;
 
 @Controller
 public class Menu extends Default{
 
+    private final AliasService aliasService;
+
     @Autowired
-    protected Menu(CostCenterService costCenterService) {
+    protected Menu(CostCenterService costCenterService, AliasService aliasService) {
         super(costCenterService);
+        this.aliasService = aliasService;
     }
 
     @GetMapping("/ankommande")
@@ -39,7 +46,9 @@ public class Menu extends Default{
     @GetMapping("/reg-handelse/{costCenterId}")
     public String handelse(Model model, @PathVariable Integer costCenterId) {
         String response = "reg-handelse";
+        List<Alias> aliases = aliasService.getAliasesPerCostCenter(costCenterId);
         model = super.setModel(model, costCenterId);
+        model.addAttribute("aliases", aliases);
         if(model == null) {
             response = "error";
         }

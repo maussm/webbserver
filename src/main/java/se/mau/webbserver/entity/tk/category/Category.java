@@ -11,6 +11,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -21,7 +22,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tk_category")
-public class Category {
+public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "id_generator", sequenceName = "tk_category_id_seq", allocationSize = 1)

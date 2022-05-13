@@ -2,6 +2,8 @@ package se.mau.webbserver.entity.tk.alias;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.mau.webbserver.entity.cost_center.CostCenter;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +46,17 @@ public class AliasService {
             throw new IllegalStateException(String.format("Alias with id %s does not exist.", id));
         }
         aliasRepository.delete(optionalAlias.get());
+    }
+
+    public List<Alias> getAliasesPerCostCenter(Integer costCenterId) {
+        CostCenter cc = new CostCenter();
+        cc.setId(costCenterId);
+        Optional<List<Alias>> optionalAliases = aliasRepository.findByCostCenter(cc);
+        if(optionalAliases.isPresent()) {
+            return optionalAliases.get();
+        } else {
+            throw new IllegalStateException(String.format("Aliases for Cost Center %s does not exist.", costCenterId));
+        }
     }
 
     public void patchAlias(Integer id, Alias alias) {

@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Alias for cost-centers various definitions of the fourth layer of the service catalogue
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tk_alias")
-public class Alias {
+public class Alias implements Serializable {
     @EmbeddedId
     private AliasId id;
 

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Fourth layer of the service-catalogue
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "tk_activity")
-public class TKActivity {
+public class TKActivity implements Serializable {
     @EmbeddedId
     private TKActivityId id;
 
