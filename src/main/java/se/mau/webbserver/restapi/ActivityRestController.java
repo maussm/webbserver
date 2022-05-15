@@ -35,7 +35,7 @@ public class ActivityRestController {
         return activityService.getActivity(id);
     }
 
-    @PostMapping()
+    @PostMapping
     public void addActivity(@RequestBody Activity activity) {
         activityService.addActivity(activity);
     }

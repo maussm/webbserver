@@ -1,6 +1,8 @@
 package se.mau.webbserver.entity.activity;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import se.mau.webbserver.entity.cost_center.CostCenter;
 import se.mau.webbserver.entity.tk.activity.TKActivity;
 import javax.persistence.Column;
