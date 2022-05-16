@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.mau.webbserver.entity.activity.Activity;
+import se.mau.webbserver.entity.activity.ActivityDTO;
 import se.mau.webbserver.entity.activity.ActivityService;
+import se.mau.webbserver.entity.cost_center.CostCenter;
+import se.mau.webbserver.entity.cost_center.CostCenterService;
+import se.mau.webbserver.entity.tk.activity.TKActivity;
+import se.mau.webbserver.entity.tk.activity.TKActivityService;
 
 import java.util.List;
 
@@ -19,10 +24,14 @@ import java.util.List;
 public class ActivityRestController {
 
     private final ActivityService activityService;
+    private final CostCenterService costCenterService;
+    private final TKActivityService tkActivityService;
 
     @Autowired
-    public ActivityRestController(ActivityService activityService) {
+    public ActivityRestController(ActivityService activityService, CostCenterService costCenterService, TKActivityService tkActivityService) {
         this.activityService = activityService;
+        this.costCenterService = costCenterService;
+        this.tkActivityService = tkActivityService;
     }
 
     @GetMapping
@@ -36,7 +45,17 @@ public class ActivityRestController {
     }
 
     @PostMapping
-    public void addActivity(@RequestBody Activity activity) {
+    public void addActivity(@RequestBody ActivityDTO activityDTO) {
+        CostCenter costCenter = costCenterService.getCostCenter(activityDTO.getCostCenterId());
+        TKActivity tkActivity = tkActivityService.getTKActivities(activityDTO.getTkActivityId());
+
+        Activity activity = new Activity();
+        activity.setReportedDate(activityDTO.getReportedDate());
+        activity.setOccurrenceDate(activityDTO.getOccurrenceDate());
+        activity.setCostCenter(costCenter);
+        activity.setTkActivity(tkActivity);
+        activity.setParticipants(activityDTO.getParticipants());
+
         activityService.addActivity(activity);
     }
 

@@ -20,7 +20,7 @@ public class CostCenterService {
         return costCenterRepository.findAll();
     }
 
-    public CostCenter getCostCenters(Integer id) {
+    public CostCenter getCostCenter(Integer id) {
         Optional<CostCenter> optionalCostCenter = costCenterRepository.findById(id);
 
         if(optionalCostCenter.isPresent()) {

@@ -31,7 +31,7 @@ public class CostCenterRestController {
 
     @GetMapping("/{id}")
     public CostCenter getCostCenter(@PathVariable Integer id) {
-        return service.getCostCenters(id);
+        return service.getCostCenter(id);
     }
 
     @PostMapping
