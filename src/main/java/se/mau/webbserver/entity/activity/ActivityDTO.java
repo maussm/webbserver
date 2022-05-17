@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class ActivityDTO {
     private Integer id;
-    private LocalDate reportedDate;
-    private LocalDate occurrenceDate;
-    private Integer costCenterId;
-    private Integer tkActivityId;
+    private LocalDate reported_date;
+    private LocalDate occurrence_date;
+    private Integer cost_center_id;
+    private Integer tk_activity_id;
     private Integer participants;
 
     public Integer getId() {
@@ -19,35 +19,35 @@ public class ActivityDTO {
     }
 
     public LocalDate getReportedDate() {
-        return reportedDate;
+        return reported_date;
     }
 
     public void setReportedDate(LocalDate reportedDate) {
-        this.reportedDate = reportedDate;
+        this.reported_date = reportedDate;
     }
 
     public LocalDate getOccurrenceDate() {
-        return occurrenceDate;
+        return occurrence_date;
     }
 
     public void setOccurrenceDate(LocalDate occurrenceDate) {
-        this.occurrenceDate = occurrenceDate;
+        this.occurrence_date = occurrenceDate;
     }
 
     public Integer getCostCenterId() {
-        return costCenterId;
+        return cost_center_id;
     }
 
     public void setCostCenterId(Integer costCenterId) {
-        this.costCenterId = costCenterId;
+        this.cost_center_id = costCenterId;
     }
 
     public Integer getTkActivityId() {
-        return tkActivityId;
+        return tk_activity_id;
     }
 
     public void setTkActivityId(Integer tkActivityId) {
-        this.tkActivityId = tkActivityId;
+        this.tk_activity_id = tkActivityId;
     }
 
     public Integer getParticipants() {
