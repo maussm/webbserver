@@ -14,7 +14,7 @@ import se.mau.webbserver.entity.attendance.AttendanceService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/activity_type")
+@RequestMapping("/api/attendance")
 public class AttendanceRestController {
 
     private final AttendanceService attendanceService;
