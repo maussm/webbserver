@@ -49,8 +49,8 @@ public class ParticipantService {
         }
 
         Participant _participant = optionalParticipant.get();
-        if(participant.getName() != null) {
-            _participant.setName(participant.getName());
+        if(participant.getId() != null) {
+            _participant.setId(participant.getId());
         }
         participantRepository.save(_participant);
     }
