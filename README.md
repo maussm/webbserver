@@ -3,7 +3,7 @@
 ```Powershell
 git clone --recursive git@github.com:maussm/webbserver.git
 cd .\webbserver\
-git checkout alpha
+git checkout beta
 git submodule init
 git submodule update
 ```
