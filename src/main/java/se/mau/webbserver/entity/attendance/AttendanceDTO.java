@@ -3,9 +3,9 @@ package se.mau.webbserver.entity.attendance;
 import java.time.LocalDate;
 
 public class AttendanceDTO {
-    private LocalDate date;
     private Integer participant_id;
     private Integer cost_center_id;
+    private LocalDate date;
 
     public LocalDate getDate() {
         return date;
