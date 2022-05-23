@@ -22,7 +22,7 @@ import java.time.LocalDate;
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
-    @SequenceGenerator(name = "id_generator", sequenceName = "activity_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "activity_id_generator", sequenceName = "activity_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
 

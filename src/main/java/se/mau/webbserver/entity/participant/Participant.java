@@ -18,7 +18,7 @@ public class Participant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "id_generator", sequenceName = "participant_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "participant_id_generator", sequenceName = "participant_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
 

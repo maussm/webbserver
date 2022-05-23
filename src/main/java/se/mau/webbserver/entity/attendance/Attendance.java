@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "id_generator", sequenceName = "attendance_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "attendance_id_generator", sequenceName = "attendance_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
 
