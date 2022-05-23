@@ -49,9 +49,9 @@ public class AttendanceRestController {
         CostCenter costCenter = costCenterService.getCostCenter(attendanceDTO.getCost_center_id());
 
         Attendance attendance = new Attendance();
+        attendance.setDate(attendanceDTO.getDate());
         attendance.setParticipant(participant);
         attendance.setC(costCenter);
-        attendance.setDate(attendanceDTO.getDate());
 
         attendanceService.addAttendance(attendance);
 

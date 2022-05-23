@@ -1,20 +1,15 @@
 package se.mau.webbserver.entity.tk.category;
 
 import org.hibernate.annotations.Type;
-import se.mau.webbserver.entity.tk.service.Service;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  * First layer of the service catalogue
@@ -24,8 +19,8 @@ import java.util.Set;
 @Table(name = "tk_category")
 public class Category implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "id_generator", sequenceName = "tk_category_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tk_category_id_generator")
+    @SequenceGenerator(name = "tk_category_id_generator", sequenceName = "tk_category_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
 

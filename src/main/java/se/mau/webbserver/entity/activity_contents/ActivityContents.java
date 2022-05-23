@@ -20,11 +20,11 @@ public class ActivityContents implements Serializable {
     private ActivityContentsId id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "activity_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "activity_id", nullable = false)
     private Activity activityId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "participant_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "participant_id", nullable = false)
     private Participant participantId;
 
     @Column(name = "id", nullable = false)
