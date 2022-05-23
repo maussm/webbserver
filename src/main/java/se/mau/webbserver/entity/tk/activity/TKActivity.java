@@ -21,7 +21,7 @@ public class TKActivity implements Serializable {
     private TKActivityId id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "s_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "s_id", nullable = false, referencedColumnName = "id", insertable = false, updatable = false)
     private Service s;
 
     @Column(name = "id", nullable = false)

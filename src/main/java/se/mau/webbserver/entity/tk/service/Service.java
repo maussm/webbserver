@@ -21,7 +21,7 @@ public class Service implements Serializable {
     private ServiceId id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "c_id", nullable = false)
+    @JoinColumn(name = "c_id", nullable = false, insertable = false, updatable = false)
     private Category c;
 
     @Column(name = "id", nullable = false)

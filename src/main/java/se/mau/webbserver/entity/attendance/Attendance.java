@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "attendance")
 public class Attendance {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attendance_id_generator")
     @SequenceGenerator(name = "attendance_id_generator", sequenceName = "attendance_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -27,11 +27,11 @@ public class Attendance {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "participant", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "participant", nullable = false)
     private Participant participant;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "c_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "c_id", nullable = false)
     private CostCenter c;
 
     public Integer getId() {

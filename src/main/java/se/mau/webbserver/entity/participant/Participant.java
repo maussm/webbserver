@@ -17,7 +17,7 @@ import java.util.Date;
 public class Participant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "participant_id_generator")
     @SequenceGenerator(name = "participant_id_generator", sequenceName = "participant_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;

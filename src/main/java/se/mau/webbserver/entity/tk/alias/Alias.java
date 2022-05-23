@@ -22,11 +22,11 @@ public class Alias implements Serializable {
     private AliasId id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "cost_center", nullable = false)
+    @JoinColumn(name = "cost_center", nullable = false, insertable = false, updatable = false)
     private CostCenter costCenter;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "activity_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "activity_id", nullable = false, referencedColumnName = "id", insertable = false, updatable = false)
     private TKActivity activity;
 
     @Column(name = "id", nullable = false)
