@@ -6,6 +6,7 @@ import se.mau.webbserver.entity.cost_center.CostCenter;
 import se.mau.webbserver.entity.cost_center.CostCenterRepository;
 import se.mau.webbserver.entity.tk.activity.TKActivity;
 import se.mau.webbserver.entity.tk.activity.TKActivityRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,11 @@ public class ActivityService {
 
     public List<Activity> getActivity() {
         return activityRepository.findAll();
+    }
+
+    public List<Activity> getActivityByCostCenterAndOccurrenceDate(Integer id, LocalDate date) {
+        Optional<List<Activity>> activities = activityRepository.findByCostCenter_IdAndOccurrenceDate(id, date);
+        return activities.orElse(null);
     }
 
     public Activity getActivity(Integer id) {

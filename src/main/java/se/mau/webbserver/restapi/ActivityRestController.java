@@ -18,7 +18,10 @@ import se.mau.webbserver.entity.cost_center.CostCenterService;
 import se.mau.webbserver.entity.tk.activity.TKActivity;
 import se.mau.webbserver.entity.tk.activity.TKActivityService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/activity")
@@ -43,6 +46,13 @@ public class ActivityRestController {
     @GetMapping("/{id}")
     public Activity getActivity(@PathVariable Integer id) {
         return activityService.getActivity(id);
+    }
+
+    @GetMapping("/cost_center_occurrence_date/{id}/{sdate}")
+    public List<Activity> getActivityByCostCenter(@PathVariable Integer id, @PathVariable String sdate) {
+        LocalDate date = LocalDate.parse(sdate);
+
+        return activityService.getActivityByCostCenterAndOccurrenceDate(id, date);
     }
 
     @ResponseBody
