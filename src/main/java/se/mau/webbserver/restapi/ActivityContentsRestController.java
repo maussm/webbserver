@@ -1,9 +1,7 @@
 package se.mau.webbserver.restapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,10 +36,10 @@ public class ActivityContentsRestController {
         return service.getActivityContents();
     }
 
-    @GetMapping("/{id}")
-    public ActivityContents getActivityContents(@PathVariable Integer id) {
-        return service.getActivityContents(id);
-    }
+    // @GetMapping("/activityId/{id}")
+    // public List<ActivityContents> getActivityContents(@PathVariable Integer id) {
+    //     return service.getActivityContentsByActivityId(id);
+    // }
 
     @PostMapping
     public void addActivityContents(@RequestBody ActivityContentsDTO activityContentsDTO) {
@@ -58,12 +56,11 @@ public class ActivityContentsRestController {
         activityContents.setParticipant(participant);
         activityContents.setId(activityContentsId);
 
-        // ActivityContents activityContents = modelMapper.map(activityContentsDTO, ActivityContents.class);
         service.addActivityContents(activityContents);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteActivityContents(@PathVariable Integer id) {
-        service.deleteActivityContents(id);
-    }
+    // @DeleteMapping("/{id}")
+    // public void deleteActivityContents(@PathVariable Integer id) {
+    //     service.deleteActivityContents(id);
+    // }
 }

@@ -31,19 +31,6 @@ public class ActivityContents implements Serializable {
     @JoinColumn(name = "participant_id", nullable = false)
     private Participant participant;
 
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "activity_contents_id_seq")
-    @SequenceGenerator(name = "activity_contents_id_seq", sequenceName = "activity_contents_id_seq", allocationSize = 1)
-    @Column(name = "id", nullable = false)
-    private Integer internalId;
-
-    public Integer getInternalId() {
-        return internalId;
-    }
-
-    public void setInternalId(Integer internalId) {
-        this.internalId = internalId;
-    }
-
     public Participant getParticipant() {
         return participant;
     }

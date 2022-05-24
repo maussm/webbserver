@@ -18,27 +18,48 @@ public class ActivityContentsService {
         return activityContentsRepository.findAll();
     }
 
-    public ActivityContents getActivityContents(Integer id) {
-        Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByInternalId(id);
-
-        if(optionalActivityContents.isPresent()) {
-            return optionalActivityContents.get();
-        } else {
-            throw new IllegalStateException(String.format("ActivityContents with id %s does not exist.", id));
-        }
-    }
+    // public List<ActivityContents> getActivityContentsByActivityId(Integer id) {
+    //     Optional<List<ActivityContents>> optionalActivityContents = activityContentsRepository.findByActivityId(id);
+    //
+    //     if(optionalActivityContents.isPresent()) {
+    //         return optionalActivityContents.get();
+    //     } else {
+    //         throw new IllegalStateException(String.format("ActivityContents with activity id %s does not exist.", id));
+    //     }
+    // }
 
     public void addActivityContents(ActivityContents activityContents) {
         activityContentsRepository.save(activityContents);
     }
 
-    public void deleteActivityContents(Integer id) {
-        Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByInternalId(id);
+    // public void deleteActivityContentsActivityId(Integer id) {
+    //     Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByActivityId(id);
+    //
+    //     if(optionalActivityContents.isEmpty()) {
+    //         throw new IllegalStateException(String.format("Activity contents with activity id %s does not exist.", id));
+    //     }
+    //
+    //     activityContentsRepository.delete(optionalActivityContents.get());
+    // }
 
-        if(optionalActivityContents.isEmpty()) {
-            throw new IllegalStateException(String.format("Activity contents with id %s does not exist.", id));
-        }
 
-        activityContentsRepository.delete(optionalActivityContents.get());
-    }
+    // public ActivityContents getActivityContentsByParticipantId(Integer id) {
+    //     Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByParticipantId(id);
+    //
+    //     if(optionalActivityContents.isPresent()) {
+    //         return optionalActivityContents.get();
+    //     } else {
+    //         throw new IllegalStateException(String.format("ActivityContents with participant id %s does not exist.", id));
+    //     }
+    // }
+
+    // public void deleteActivityContentsParticipantId(Integer id) {
+    //     Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByParticipantId(id);
+    //
+    //     if(optionalActivityContents.isEmpty()) {
+    //         throw new IllegalStateException(String.format("Activity contents with participant id %s does not exist.", id));
+    //     }
+    //
+    //     activityContentsRepository.delete(optionalActivityContents.get());
+    // }
 }
