@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import se.mau.webbserver.entity.activity.Activity;
 import se.mau.webbserver.entity.activity.ActivityDTO;
@@ -44,8 +45,9 @@ public class ActivityRestController {
         return activityService.getActivity(id);
     }
 
+    @ResponseBody
     @PostMapping
-    public void addActivity(@RequestBody ActivityDTO activityDTO) {
+    public Integer addActivity(@RequestBody ActivityDTO activityDTO) {
         CostCenter costCenter = costCenterService.getCostCenter(activityDTO.getCostCenterId());
         TKActivity tkActivity = tkActivityService.getTKActivities(activityDTO.getTkActivityId());
 
@@ -57,6 +59,7 @@ public class ActivityRestController {
         activity.setParticipants(activityDTO.getParticipants());
 
         activityService.addActivity(activity);
+        return activity.getId();
     }
 
     @DeleteMapping("/{id}")
