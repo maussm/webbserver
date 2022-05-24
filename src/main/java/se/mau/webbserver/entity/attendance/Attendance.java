@@ -12,11 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "attendance")
-public class Attendance {
+public class Attendance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attendance_id_generator")
     @SequenceGenerator(name = "attendance_id_generator", sequenceName = "attendance_id_seq", allocationSize = 1)

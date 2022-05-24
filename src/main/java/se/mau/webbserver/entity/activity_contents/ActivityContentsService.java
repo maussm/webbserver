@@ -29,7 +29,6 @@ public class ActivityContentsService {
     }
 
     public void addActivityContents(ActivityContents activityContents) {
-        System.out.println("Adding post");
         activityContentsRepository.save(activityContents);
     }
 

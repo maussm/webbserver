@@ -15,11 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "activity")
-public class Activity {
+public class Activity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_id_generator")
     @SequenceGenerator(name = "activity_id_generator", sequenceName = "activity_id_seq", allocationSize = 1)

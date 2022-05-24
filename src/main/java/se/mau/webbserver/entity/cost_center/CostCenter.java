@@ -10,10 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "cost_center")
-public class CostCenter {
+public class CostCenter implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cc_id_generator")
     @SequenceGenerator(name = "cc_id_generator", sequenceName = "cost_center_id_seq", allocationSize = 1)
