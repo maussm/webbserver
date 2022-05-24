@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,6 +28,7 @@ public class ActivityContents implements Serializable {
     @JoinColumn(name = "participant_id", nullable = false, insertable = false, updatable = false)
     private Participant participantId;
 
+    @GeneratedValue()
     @Column(name = "id", nullable = false)
     private Integer internalId;
 

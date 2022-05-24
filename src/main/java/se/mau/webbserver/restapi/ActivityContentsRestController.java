@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import se.mau.webbserver.entity.activity.Activity;
+import se.mau.webbserver.entity.activity.ActivityService;
 import se.mau.webbserver.entity.activity_contents.ActivityContents;
+import se.mau.webbserver.entity.activity_contents.ActivityContentsDTO;
 import se.mau.webbserver.entity.activity_contents.ActivityContentsService;
+import se.mau.webbserver.entity.participant.Participant;
+import se.mau.webbserver.entity.participant.ParticipantService;
 
 import java.util.List;
 
@@ -19,10 +24,14 @@ import java.util.List;
 public class ActivityContentsRestController {
 
     private final ActivityContentsService service;
+    private final ActivityService activityService;
+    private final ParticipantService participantService;
 
     @Autowired
-    public ActivityContentsRestController(ActivityContentsService service) {
+    public ActivityContentsRestController(ActivityContentsService service, ActivityService activityService, ParticipantService participantService) {
         this.service = service;
+        this.activityService = activityService;
+        this.participantService = participantService;
     }
 
     @GetMapping
@@ -36,7 +45,15 @@ public class ActivityContentsRestController {
     }
 
     @PostMapping
-    public void addActivityContents(@RequestBody ActivityContents activityContents) {
+    public void addActivityContents(@RequestBody ActivityContentsDTO activityContentsDTO) {
+
+        Activity activity = activityService.getActivity(activityContentsDTO.getActivity_id());
+        Participant participant = participantService.getParticipant(activityContentsDTO.getParticipant_id());
+
+        ActivityContents activityContents = new ActivityContents();
+        activityContents.setActivityId(activity);
+        activityContents.setParticipantId(participant);
+
         service.addActivityContents(activityContents);
     }
 

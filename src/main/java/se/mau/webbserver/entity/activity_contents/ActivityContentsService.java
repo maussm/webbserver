@@ -29,12 +29,7 @@ public class ActivityContentsService {
     }
 
     public void addActivityContents(ActivityContents activityContents) {
-        Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findById(activityContents.getId());
-
-        if(optionalActivityContents.isPresent()) {
-            throw new IllegalStateException(String.format("ActivityContents with id %s already exists.", activityContents.getInternalId()));
-        }
-
+        System.out.println("Adding post");
         activityContentsRepository.save(activityContents);
     }
 
