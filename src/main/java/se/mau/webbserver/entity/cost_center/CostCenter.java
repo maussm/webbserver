@@ -1,7 +1,6 @@
 package se.mau.webbserver.entity.cost_center;
 
 import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

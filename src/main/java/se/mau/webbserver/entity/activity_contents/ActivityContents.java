@@ -2,16 +2,12 @@ package se.mau.webbserver.entity.activity_contents;
 
 import se.mau.webbserver.entity.activity.Activity;
 import se.mau.webbserver.entity.participant.Participant;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 
