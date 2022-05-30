@@ -10,7 +10,7 @@
     </parent>
     <groupId>se.mau</groupId>
     <artifactId>webbserver</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.0.0</version>
     <name>webbserver</name>
     <description>webbserver</description>
     <properties>
