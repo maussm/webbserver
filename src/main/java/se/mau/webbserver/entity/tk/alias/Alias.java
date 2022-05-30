@@ -1,10 +1,15 @@
 package se.mau.webbserver.entity.tk.alias;
 
+import se.mau.webbserver.entity.cost_center.CostCenter;
+import se.mau.webbserver.entity.tk.activity.TKActivity;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Objects;
+import java.io.Serializable;
 
 /**
  * Alias for cost-centers various definitions of the fourth layer of the service catalogue
@@ -12,48 +17,61 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tk_alias")
-public class Alias {
-    @Id @Column(name = "definition")
-    private String definition;
-    @Column(name = "cost_center")
-    private Long costCenter;
-    @Column(name = "activity_id")
-    private Long activityReference;
+public class Alias implements Serializable {
+    @EmbeddedId
+    private AliasId id;
 
-    public String getDefinition() {
-        return definition;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cost_center", nullable = false, insertable = false, updatable = false)
+    private CostCenter costCenter;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "activity_id", nullable = false, referencedColumnName = "id", insertable = false, updatable = false)
+    private TKActivity activity;
+
+    @Column(name = "id", nullable = false)
+    private Integer internalId;
+
+    @Column(name = "id_ext")
+    private Long idExt;
+
+    public AliasId getId() {
+        return id;
     }
 
-    public void setDefinition(String definition) {
-        this.definition = definition;
+    public void setId(AliasId id) {
+        this.id = id;
     }
 
-    public Long getCostCenter() {
+    public CostCenter getCostCenter() {
         return costCenter;
     }
 
-    public void setCostCenter(Long costCenter) {
+    public void setCostCenter(CostCenter costCenter) {
         this.costCenter = costCenter;
     }
 
-    public Long getActivityReference() {
-        return activityReference;
+    public TKActivity getActivity() {
+        return activity;
     }
 
-    public void setActivityReference(Long activityReference) {
-        this.activityReference = activityReference;
+    public void setActivity(TKActivity activity) {
+        this.activity = activity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (! (o instanceof Alias)) return false;
-        Alias alias = (Alias) o;
-        return Objects.equals(definition, alias.definition) && Objects.equals(costCenter, alias.costCenter) && Objects.equals(activityReference, alias.activityReference);
+    public Integer getInternalId() {
+        return internalId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(definition, costCenter, activityReference);
+    public void setInternalId(Integer internalId) {
+        this.internalId = internalId;
+    }
+
+    public Long getIdExt() {
+        return idExt;
+    }
+
+    public void setIdExt(Long idExt) {
+        this.idExt = idExt;
     }
 }

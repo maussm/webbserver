@@ -1,9 +1,14 @@
 package se.mau.webbserver.entity.tk.service;
 
+import se.mau.webbserver.entity.tk.category.Category;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Second layer of the service catalogue
@@ -11,35 +16,49 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tk_service")
-public class Service {
-    @Id @Column(name = "id")
-    private Long id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "c_id")
-    private Long categoryId;
+public class Service implements Serializable {
+    @EmbeddedId
+    private ServiceId id;
 
-    public Long getId() {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "c_id", nullable = false, insertable = false, updatable = false)
+    private Category c;
+
+    @Column(name = "id", nullable = false)
+    private Integer internalId;
+
+    @Column(name = "id_ext")
+    private Long idExt;
+
+    public ServiceId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ServiceId id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Category getC() {
+        return c;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setC(Category c) {
+        this.c = c;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Integer getInternalId() {
+        return internalId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setInternalId(Integer internalId) {
+        this.internalId = internalId;
+    }
+
+    public Long getIdExt() {
+        return idExt;
+    }
+
+    public void setIdExt(Long idExt) {
+        this.idExt = idExt;
     }
 }

@@ -6,49 +6,59 @@ import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class ServiceService {
-    private final ServiceRepository repository;
+    private final ServiceRepository serviceRepository;
 
     @Autowired
-    public ServiceService(ServiceRepository repository) {
-        this.repository = repository;
+    public ServiceService(ServiceRepository serviceRepository) {
+        this.serviceRepository = serviceRepository;
     }
 
     public List<Service> getService() {
-        return repository.findAll();
+        return serviceRepository.findAll();
     }
 
-    public Service getService(String name) {
-        Optional<Service> optionalService = repository.findById(name);
+    public Service getService(Integer id) {
+        Optional<Service> optionalService = serviceRepository.findByInternalId(id);
 
         if(optionalService.isPresent()) {
             return optionalService.get();
         } else {
-            throw new IllegalStateException(String.format("Service with id %s does not exist.", name));
+            throw new IllegalStateException(String.format("Service with id %s does not exist.", id));
         }
     }
 
     public void addService(Service service) {
-        Optional<Service> optionalService = repository.findById(service.getName());
+        Optional<Service> optionalService = serviceRepository.findById(service.getId());
 
         if(optionalService.isPresent()) {
-            throw new IllegalStateException(String.format("Service with id %s already exists.", service.getName()));
+            throw new IllegalStateException(String.format("Service with id %s already exists.", service.getInternalId()));
         }
 
-        repository.save(service);
+        serviceRepository.save(service);
     }
 
-    public void deleteService(String name) {
-        Optional<Service> optionalService = repository.findById(name);
+    public void deleteService(Integer id) {
+        Optional<Service> optionalService = serviceRepository.findByInternalId(id);
 
         if(optionalService.isEmpty()) {
-            throw new IllegalStateException(String.format("Service with id %s does not exist.", name));
+            throw new IllegalStateException(String.format("Service with id %s does not exist.", id));
         }
 
-        repository.delete(optionalService.get());
+        serviceRepository.delete(optionalService.get());
     }
 
-    public void serviceService(Service service) {
+    public void patchService(Integer id, Service service) {
+        Optional<Service> optionalService = serviceRepository.findByInternalId(id);
 
-        //TODO
+        if(optionalService.isEmpty()) {
+            throw new IllegalStateException(String.format("Service with id %s does not exist.", id));
+        }
+
+        Service _service = optionalService.get();
+
+        if(service.getIdExt() != null) {
+            _service.setIdExt(service.getIdExt());
+        }
+        serviceRepository.save(_service);
     }
 }

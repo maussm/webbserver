@@ -29,7 +29,7 @@ public class ParticipantRestController {
     }
 
     @GetMapping("/{id}")
-    public Participant getParticipant(@PathVariable Long id) {
+    public Participant getParticipant(@PathVariable Integer id) {
         return restService.getParticipant(id);
     }
 
@@ -39,12 +39,12 @@ public class ParticipantRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteParticipant(@PathVariable Long id) {
+    public void deleteParticipant(@PathVariable Integer id) {
         restService.deleteParticipant(id);
     }
 
     @PatchMapping("/{id}")
-    public void patchParticipant(@PathVariable Long id, @RequestBody Participant participant) {
+    public void patchParticipant(@PathVariable Integer id, @RequestBody Participant participant) {
         restService.patchParticipant(id, participant);
     }
  }

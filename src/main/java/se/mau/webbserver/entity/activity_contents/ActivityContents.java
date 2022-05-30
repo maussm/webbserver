@@ -1,50 +1,53 @@
 package se.mau.webbserver.entity.activity_contents;
 
-import javax.persistence.Column;
+import se.mau.webbserver.entity.activity.Activity;
+import se.mau.webbserver.entity.participant.Participant;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "activity_contents")
-@IdClass(ActivityContents.class)
 public class ActivityContents implements Serializable {
-    @Id
-    @Column(name = "activity_id")
-    private Long activityId;
-    @Id
-    @Column (name = "participant_id")
-    private Long participantId;
+    @EmbeddedId
+    private ActivityContentsId id;
 
-    public Long getParticipantId() {
-        return participantId;
+    @MapsId("activityId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "activity_id", nullable = false)
+    private Activity activity;
+
+    @MapsId("participantId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "participant_id", nullable = false)
+    private Participant participant;
+
+    public Participant getParticipant() {
+        return participant;
     }
 
-    public void setParticipantId(Long participantId) {
-        this.participantId = participantId;
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
     }
 
-    public Long getActivityId() {
-        return activityId;
+    public Activity getActivity() {
+        return activity;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (! (o instanceof ActivityContents)) return false;
-        ActivityContents that = (ActivityContents) o;
-        return Objects.equals(participantId, that.participantId) && Objects.equals(activityId, that.activityId);
+    public ActivityContentsId getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(participantId, activityId);
+    public void setId(ActivityContentsId id) {
+        this.id = id;
     }
 }

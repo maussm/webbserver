@@ -30,9 +30,9 @@ public class ServiceRestController {
         return serviceService.getService();
     }
 
-    @GetMapping("/{name}")
-    public Service getService(String name) {
-        return serviceService.getService(name);
+    @GetMapping("/{id}")
+    public Service getService(@PathVariable Integer id) {
+        return serviceService.getService(id);
     }
 
     @PostMapping
@@ -41,13 +41,13 @@ public class ServiceRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteService(@PathVariable String name) {
-        serviceService.deleteService(name);
+    public void deleteService(@PathVariable Integer id) {
+        serviceService.deleteService(id);
     }
 
-    @PatchMapping
-    public void patchService(@PathVariable String name, @RequestBody Service service) {
-        serviceService.serviceService(service);
+    @PatchMapping("/{id}")
+    public void patchService(@PathVariable Integer id, @RequestBody Service service) {
+        serviceService.patchService(id, service);
     }
 
 }

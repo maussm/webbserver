@@ -6,37 +6,65 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.RedirectView;
-import se.mau.webbserver.entity.cost_center.CostCenter;
 import se.mau.webbserver.entity.cost_center.CostCenterService;
-import javax.websocket.server.PathParam;
+import se.mau.webbserver.entity.tk.alias.Alias;
+import se.mau.webbserver.entity.tk.alias.AliasService;
+
 import java.util.List;
 
 @Controller
-public class Menu {
+public class Menu extends Default{
 
-    private final CostCenterService costCenterService;
+    private final AliasService aliasService;
 
     @Autowired
-    public Menu(CostCenterService costCenterService) {
-        this.costCenterService = costCenterService;
+    protected Menu(CostCenterService costCenterService, AliasService aliasService) {
+        super(costCenterService);
+        this.aliasService = aliasService;
     }
 
-
-    @GetMapping("/meny")
-    public String menyRedirect(@RequestParam Long vald_enhet) {
-        return "redirect:/meny/" + vald_enhet;
+    @GetMapping("/ankommande")
+    public String ankommande(@RequestParam Integer vald_enhet) {
+        return "redirect:/ankommande/" + vald_enhet;
     }
 
-    @GetMapping("/meny/{vald_enhet}")
-    public String meny(Model model, @PathVariable Long vald_enhet) {
-        String response = "meny";
+    @GetMapping("/ankommande/{costCenterId}")
+    public String ankommande(Model model, @PathVariable Integer costCenterId) {
+        String response = "ankommande";
+        model = super.setModel(model, costCenterId);
+        if(model == null) {
+            response = "error";
+        }
+        return response;
+    }
 
-        String costCenterName = costCenterService.getCostCenterName(vald_enhet);
-        model.addAttribute("costCenterName", costCenterName);
-        model.addAttribute("costCenterId", vald_enhet);
+    @GetMapping("/reg-handelse")
+    public String handelse(@RequestParam Integer vald_enhet) {
+        return "redirect:/reg-handelse/" + vald_enhet;
+    }
 
-        if(costCenterName == null) {
+    @GetMapping("/reg-handelse/{costCenterId}")
+    public String handelse(Model model, @PathVariable Integer costCenterId) {
+        String response = "reg-handelse";
+        List<Alias> aliases = aliasService.getAliasesPerCostCenter(costCenterId);
+        model = super.setModel(model, costCenterId);
+        model.addAttribute("aliases", aliases);
+        if(model == null) {
+            response = "error";
+        }
+        return response;
+    }
+
+    @GetMapping("/reg-deltagare")
+    public String deltagare(@RequestParam Integer vald_enhet) {
+        return "redirect:/reg-deltagare/" + vald_enhet;
+    }
+
+    @GetMapping("/reg-deltagare/{costCenterId}")
+    public String deltagare(Model model, @PathVariable Integer costCenterId) {
+        String response = "reg-deltagare";
+        model = super.setModel(model, costCenterId);
+        if(model == null) {
             response = "error";
         }
         return response;

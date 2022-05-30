@@ -2,24 +2,39 @@ package se.mau.webbserver.entity.activity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.mau.webbserver.entity.cost_center.CostCenter;
+import se.mau.webbserver.entity.cost_center.CostCenterRepository;
+import se.mau.webbserver.entity.tk.activity.TKActivity;
+import se.mau.webbserver.entity.tk.activity.TKActivityRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ActivityService {
-    private final ActivityRepository repository;
+
+    private final ActivityRepository activityRepository;
+    private final CostCenterRepository costCenterRepository;
+    private final TKActivityRepository tkActivityRepository;
 
     @Autowired
-    public ActivityService(ActivityRepository repository) {
-        this.repository = repository;
+    public ActivityService(ActivityRepository activityRepository, CostCenterRepository costCenterRepository, TKActivityRepository tkActivityRepository) {
+        this.activityRepository = activityRepository;
+        this.costCenterRepository = costCenterRepository;
+        this.tkActivityRepository = tkActivityRepository;
     }
 
     public List<Activity> getActivity() {
-        return repository.findAll();
+        return activityRepository.findAll();
     }
 
-    public Activity getActivity(Long id) {
-        Optional<Activity> optionalActivity = repository.findById(id);
+    public List<Activity> getActivityByCostCenterAndOccurrenceDate(Integer id, LocalDate date) {
+        Optional<List<Activity>> activities = activityRepository.findByCostCenter_IdAndOccurrenceDate(id, date);
+        return activities.orElse(null);
+    }
+
+    public Activity getActivity(Integer id) {
+        Optional<Activity> optionalActivity = activityRepository.findById(id);
 
         if(optionalActivity.isPresent()) {
             return optionalActivity.get();
@@ -29,27 +44,21 @@ public class ActivityService {
     }
 
     public void addActivity(Activity activity) {
-        Optional<Activity> optionalActivity = repository.findById(activity.getId());
-
-        if(optionalActivity.isPresent()) {
-            throw new IllegalStateException(String.format("Activity with %s already exists.", activity.getId()));
-        }
-
-        repository.save(activity);
+        activityRepository.save(activity);
     }
 
-    public void deleteActivity(Long id) {
-        Optional<Activity> optionalActivity = repository.findById(id);
+    public void deleteActivity(Integer id) {
+        Optional<Activity> optionalActivity = activityRepository.findById(id);
 
         if(optionalActivity.isEmpty()) {
             throw new IllegalStateException(String.format("Activity with id %s does not exist.", id));
         }
 
-        repository.delete(optionalActivity.get());
+        activityRepository.delete(optionalActivity.get());
     }
 
-    public void patchActivity(Long id, Activity activity) {
-        Optional<Activity> optionalActivity = repository.findById(id);
+    public void patchActivity(Integer id, Activity activity) {
+        Optional<Activity> optionalActivity = activityRepository.findById(id);
 
         if(optionalActivity.isEmpty()) {
             throw new IllegalStateException(String.format("Activity with id %s does not exist.", id));
@@ -57,23 +66,35 @@ public class ActivityService {
 
         Activity _activity = optionalActivity.get();
 
-        if(!(_activity.equals(activity))) {
-            if(activity.getReportedDate() != null) {
-                _activity.setReportedDate(activity.getReportedDate());
-            }
-            if(activity.getOccurrenceDate() != null) {
-                _activity.setOccurrenceDate(activity.getOccurrenceDate());
-            }
-            if(activity.getCostCenterId() != null) {
-                _activity.setCostCenterId(activity.getCostCenterId());
-            }
-            if(activity.getActivityID() != null) {
-                _activity.setActivityID(activity.getActivityID());
-            }
-            if(activity.getNbrOfParticipants() != null) {
-                _activity.setNbrOfParticipants(activity.getNbrOfParticipants());
-            }
-            repository.save(_activity);
+        if(activity.getReportedDate() != null) {
+            _activity.setReportedDate(activity.getReportedDate());
         }
+        if(activity.getOccurrenceDate() != null) {
+            _activity.setOccurrenceDate(activity.getOccurrenceDate());
+        }
+        if(activity.getCostCenter().getId() != null) {
+            int costCenterId = activity.getCostCenter().getId();
+            Optional<CostCenter> costCenter = costCenterRepository.findById(costCenterId);
+
+            if(costCenter.isEmpty()) {
+                throw new IllegalStateException("Cost center was not found.");
+            }
+
+            _activity.setCostCenter(costCenter.get());
+        }
+        if(activity.getTkActivity() != null) {
+            int tkActivityId = activity.getTkActivity().getInternalId();
+            Optional<TKActivity> tkActivity = tkActivityRepository.findByInternalId(tkActivityId);
+
+            if(tkActivity.isEmpty()) {
+                throw new IllegalStateException("TKActivity was not found.");
+            }
+
+            _activity.setTkActivity(tkActivity.get());
+        }
+        if(activity.getParticipants() != null) {
+            _activity.setParticipants(activity.getParticipants());
+        }
+        activityRepository.save(_activity);
     }
 }

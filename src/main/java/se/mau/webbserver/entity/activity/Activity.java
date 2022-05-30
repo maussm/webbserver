@@ -1,89 +1,91 @@
 package se.mau.webbserver.entity.activity;
 
-
+import se.mau.webbserver.entity.cost_center.CostCenter;
+import se.mau.webbserver.entity.tk.activity.TKActivity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.util.Date;
-import java.util.Objects;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "activity")
-public class Activity {
+public class Activity implements Serializable {
     @Id
-    @GeneratedValue
-    private Long id;
-    @Column(name = "reported_date")
-    private Date reportedDate;
-    @Column (name = "occurrence_date")
-    private Date occurrenceDate;
-    @Column (name = "cost_center")
-    private Long costCenterId;
-    @Column (name = "activity_id")
-    private Long activityID;
-    @Column (name = "participants")
-    private Long nbrOfParticipants;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity_id_generator")
+    @SequenceGenerator(name = "activity_id_generator", sequenceName = "activity_id_seq", allocationSize = 1)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    public Long getId() {
+    @Column(name = "reported_date", nullable = false)
+    private LocalDate reportedDate;
+
+    @Column(name = "occurrence_date", nullable = false)
+    private LocalDate occurrenceDate;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cost_center", nullable = false)
+    private CostCenter costCenter;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "activity_id", nullable = false, referencedColumnName = "id")
+    private TKActivity tkActivity;
+
+    @Column(name = "participants")
+    private Integer participants;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Date getReportedDate() {
+    public LocalDate getReportedDate() {
         return reportedDate;
     }
 
-    public void setReportedDate(Date reportedDate) {
+    public void setReportedDate(LocalDate reportedDate) {
         this.reportedDate = reportedDate;
     }
 
-    public Date getOccurrenceDate() {
+    public LocalDate getOccurrenceDate() {
         return occurrenceDate;
     }
 
-    public void setOccurrenceDate(Date occurrenceDate) {
+    public void setOccurrenceDate(LocalDate occurrenceDate) {
         this.occurrenceDate = occurrenceDate;
     }
 
-    public Long getCostCenterId() {
-        return costCenterId;
+    public CostCenter getCostCenter() {
+        return costCenter;
     }
 
-    public void setCostCenterId(Long costCenterId) {
-        this.costCenterId = costCenterId;
+    public void setCostCenter(CostCenter costCenter) {
+        this.costCenter = costCenter;
     }
 
-    public Long getActivityID() {
-        return activityID;
+    public TKActivity getTkActivity() {
+        return tkActivity;
     }
 
-    public void setActivityID(Long activityID) {
-        this.activityID = activityID;
+    public void setTkActivity(TKActivity activity) {
+        this.tkActivity = activity;
     }
 
-    public Long getNbrOfParticipants() {
-        return nbrOfParticipants;
+    public Integer getParticipants() {
+        return participants;
     }
 
-    public void setNbrOfParticipants(Long nbrOfParticipants) {
-        this.nbrOfParticipants = nbrOfParticipants;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (! (o instanceof Activity)) return false;
-        Activity activity = (Activity) o;
-        return Objects.equals(id, activity.id) && Objects.equals(reportedDate, activity.reportedDate) && Objects.equals(occurrenceDate, activity.occurrenceDate) && Objects.equals(costCenterId, activity.costCenterId) && Objects.equals(activityID, activity.activityID) && Objects.equals(nbrOfParticipants, activity.nbrOfParticipants);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, reportedDate, occurrenceDate, costCenterId, activityID, nbrOfParticipants);
+    public void setParticipants(Integer participants) {
+        this.participants = participants;
     }
 }

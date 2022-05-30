@@ -1,10 +1,14 @@
 package se.mau.webbserver.entity.tk.activity;
 
+import se.mau.webbserver.entity.tk.service.Service;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Objects;
+import java.io.Serializable;
 
 /**
  * Fourth layer of the service-catalogue
@@ -12,28 +16,53 @@ import java.util.Objects;
 
 @Entity
 @Table (name = "tk_activity")
-public class TKActivity {
-    @Id @Column(name = "id")
-    private Long id;
-    @Column(name = "name")
-    private String name;
+public class TKActivity implements Serializable {
+    @EmbeddedId
+    private TKActivityId id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "s_id", nullable = false, referencedColumnName = "id", insertable = false, updatable = false)
+    private Service s;
+
+    @Column(name = "id", nullable = false)
+    private Integer internalId;
+
+    @Column(name = "id_ext")
+    private Long idExt;
+
     @Column(name = "type_id")
     private Long typeId;
 
-    public Long getId() {
+    public TKActivityId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(TKActivityId id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Service getS() {
+        return s;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setS(Service s) {
+        this.s = s;
+    }
+
+    public Integer getInternalId() {
+        return internalId;
+    }
+
+    public void setInternalId(Integer internalId) {
+        this.internalId = internalId;
+    }
+
+    public Long getIdExt() {
+        return idExt;
+    }
+
+    public void setIdExt(Long idExt) {
+        this.idExt = idExt;
     }
 
     public Long getTypeId() {
@@ -42,17 +71,5 @@ public class TKActivity {
 
     public void setTypeId(Long typeId) {
         this.typeId = typeId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (! (o instanceof TKActivity activity)) return false;
-        return Objects.equals(name, activity.name) && Objects.equals(typeId, activity.typeId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, typeId);
     }
 }

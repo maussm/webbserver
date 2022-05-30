@@ -18,31 +18,35 @@ import java.util.List;
 @RequestMapping("/api/category")
 public class CategoryRestController {
 
-    private final CategoryService service;
+    private final CategoryService categoryService;
 
     @Autowired
-    public CategoryRestController(CategoryService service) {
-        this.service = service;
+    public CategoryRestController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @GetMapping
     public List<Category> getCategories() {
-        return service.getCategory();
+        return categoryService.getCategory();
     }
 
-    @GetMapping("/{name}")
-    public Category getCategory(String name) {
-        return service.getCategory(name);
+    @GetMapping("/{id}")
+    public Category getCategory(@PathVariable Integer id) {
+        return categoryService.getCategory(id);
     }
 
     @PostMapping
     public void addCategory(@RequestBody Category category) {
-        service.addCategory(category);
+        categoryService.addCategory(category);
     }
 
-    @DeleteMapping
-    public void deleteCategory(@PathVariable String name) {
-        service.deleteCategory(name);
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable Integer id) {
+        categoryService.deleteCategory(id);
     }
 
+    @PatchMapping("/{id}")
+    public void patchCategory(@PathVariable Integer id, @RequestBody Category category) {
+        categoryService.patchCategory(id, category);
+    }
 }

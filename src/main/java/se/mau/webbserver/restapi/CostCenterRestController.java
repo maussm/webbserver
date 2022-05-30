@@ -30,8 +30,8 @@ public class CostCenterRestController {
     }
 
     @GetMapping("/{id}")
-    public CostCenter getCostCenter(@PathVariable Long id) {
-        return service.getCostCenters(id);
+    public CostCenter getCostCenter(@PathVariable Integer id) {
+        return service.getCostCenter(id);
     }
 
     @PostMapping
@@ -40,12 +40,12 @@ public class CostCenterRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCostCenter(@PathVariable Long id) {
+    public void deleteCostCenter(@PathVariable Integer id) {
         service.deleteCostCenter(id);
     }
 
     @PatchMapping("/{id}")
-    public void patchCostCenter(@PathVariable Long id, @RequestBody CostCenter costCenter) {
+    public void patchCostCenter(@PathVariable Integer id, @RequestBody CostCenter costCenter) {
         service.patchCostCenter(id, costCenter);
     }
 }

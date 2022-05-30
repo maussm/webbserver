@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TKActivityRepository extends JpaRepository<TKActivity, Long> {
-    Optional<TKActivity> findByNameAndTypeId(String name, Long typeId);
+public interface TKActivityRepository extends JpaRepository<TKActivity, TKActivityId> {
+    Optional<TKActivity> findByInternalId(int id);
 }

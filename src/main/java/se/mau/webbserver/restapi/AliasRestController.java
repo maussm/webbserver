@@ -31,8 +31,8 @@ public class AliasRestController {
     }
 
     @GetMapping("/{id}")
-    public Alias getAlias(@PathVariable String name) {
-        return service.getAlias(name);
+    public Alias getAlias(@PathVariable Integer id) {
+        return service.getAlias(id);
     }
 
     @PostMapping
@@ -41,12 +41,12 @@ public class AliasRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAlias(@PathVariable String name) {
-        service.deleteAlias(name);
+    public void deleteAlias(@PathVariable Integer id) {
+        service.deleteAlias(id);
     }
 
     @PatchMapping("/{id}")
-    public void patchAlias(@PathVariable String name, @RequestBody Alias alias) {
-        service.patchAlias(name, alias);
+    public void patchAlias(@PathVariable Integer id, @RequestBody Alias alias) {
+        service.patchAlias(id, alias);
     }
 }
