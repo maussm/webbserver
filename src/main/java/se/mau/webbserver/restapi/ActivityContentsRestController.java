@@ -2,6 +2,7 @@ package se.mau.webbserver.restapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +37,10 @@ public class ActivityContentsRestController {
         return service.getActivityContents();
     }
 
-    // @GetMapping("/activityId/{id}")
-    // public List<ActivityContents> getActivityContents(@PathVariable Integer id) {
-    //     return service.getActivityContentsByActivityId(id);
-    // }
+    @GetMapping("/activityId/{id}")
+    public List<ActivityContents> getActivityContents(@PathVariable Integer id) {
+        return service.getActivityContentsByActivityId(id);
+    }
 
     @PostMapping
     public void addActivityContents(@RequestBody ActivityContentsDTO activityContentsDTO) {

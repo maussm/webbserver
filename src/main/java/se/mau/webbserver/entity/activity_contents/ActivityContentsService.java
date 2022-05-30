@@ -17,15 +17,15 @@ public class ActivityContentsService {
         return activityContentsRepository.findAll();
     }
 
-    // public List<ActivityContents> getActivityContentsByActivityId(Integer id) {
-    //     Optional<List<ActivityContents>> optionalActivityContents = activityContentsRepository.findByActivityId(id);
-    //
-    //     if(optionalActivityContents.isPresent()) {
-    //         return optionalActivityContents.get();
-    //     } else {
-    //         throw new IllegalStateException(String.format("ActivityContents with activity id %s does not exist.", id));
-    //     }
-    // }
+    public List<ActivityContents> getActivityContentsByActivityId(Integer id) {
+        Optional<List<ActivityContents>> optionalActivityContents = activityContentsRepository.findByActivityId(id);
+
+        if(optionalActivityContents.isPresent()) {
+            return optionalActivityContents.get();
+        } else {
+            throw new IllegalStateException(String.format("ActivityContents with activity id %s does not exist.", id));
+        }
+    }
 
     public void addActivityContents(ActivityContents activityContents) {
         activityContentsRepository.save(activityContents);
