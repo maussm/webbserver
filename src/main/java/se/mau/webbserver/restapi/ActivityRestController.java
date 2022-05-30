@@ -17,11 +17,8 @@ import se.mau.webbserver.entity.cost_center.CostCenter;
 import se.mau.webbserver.entity.cost_center.CostCenterService;
 import se.mau.webbserver.entity.tk.activity.TKActivity;
 import se.mau.webbserver.entity.tk.activity.TKActivityService;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/activity")
