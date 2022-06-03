@@ -6,5 +6,4 @@ import java.util.Optional;
 
 public interface ActivityContentsRepository extends JpaRepository<ActivityContents, ActivityContentsId> {
     Optional<List<ActivityContents>> findByActivityId(Integer id);
-    // OOptional<List<ActivityContents>> findByParticipantId(Integer id);
 }
