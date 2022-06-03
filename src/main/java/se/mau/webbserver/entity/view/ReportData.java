@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
+/**
+ * En entity klass som mappar mot vyn report_data.
+ */
 @Entity
 @Immutable
 @Table(name = "report_data")

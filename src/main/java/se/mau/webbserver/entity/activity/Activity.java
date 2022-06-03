@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Entity klass som mappar mot tabellen activity i databasen.
+ */
 @Entity
 @Table(name = "activity")
 public class Activity implements Serializable {

@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Innehåller all logik för att hämta data från tabellen Activity.
+ */
 @Service
 public class ActivityService {
 
@@ -17,6 +20,12 @@ public class ActivityService {
     private final CostCenterRepository costCenterRepository;
     private final TKActivityRepository tkActivityRepository;
 
+    /**
+     * Skapas automatiskt av Spring Boot och initierar kopplingar till de olika tabellerna som krävs.
+     * @param activityRepository Kopplingen till tabellen activity.
+     * @param costCenterRepository Koppling till tabellen cost_center.
+     * @param tkActivityRepository Koppling till tabellen tk_activity.
+     */
     @Autowired
     public ActivityService(ActivityRepository activityRepository, CostCenterRepository costCenterRepository, TKActivityRepository tkActivityRepository) {
         this.activityRepository = activityRepository;
@@ -24,15 +33,30 @@ public class ActivityService {
         this.tkActivityRepository = tkActivityRepository;
     }
 
+    /**
+     * Hämtar alla rader från databasen.
+     * @return Alla rader som finns i form av en lista med Activity.
+     */
     public List<Activity> getActivity() {
         return activityRepository.findAll();
     }
 
+    /**
+     * Hämtar en lista med aktiviteter för ett angivet kostnadsställe och datum.
+     * @param id ID från tabellen cost_center.
+     * @param date Datum för när aktiviteten var.
+     * @return En lista med alla aktiviteter för det angivna kostnadsstället och datumet om något finns, annars null.
+     */
     public List<Activity> getActivityByCostCenterAndOccurrenceDate(Integer id, LocalDate date) {
         Optional<List<Activity>> activities = activityRepository.findByCostCenter_IdAndOccurrenceDate(id, date);
         return activities.orElse(null);
     }
 
+    /**
+     * Hämtar en specifik aktivitet.
+     * @param id ID på aktiviteten att hämta.
+     * @return Aktiviteten med ID om den finns, annars kastas felmeddelande.
+     */
     public Activity getActivity(Integer id) {
         Optional<Activity> optionalActivity = activityRepository.findById(id);
 
@@ -43,10 +67,18 @@ public class ActivityService {
         }
     }
 
+    /**
+     * Lägger till en ny aktivitet i databasen.
+     * @param activity Aktivteten att spara i databasen.
+     */
     public void addActivity(Activity activity) {
         activityRepository.save(activity);
     }
 
+    /**
+     * Tar bort en aktivitet från databasen.
+     * @param id ID på den aktivitet att ta bort.
+     */
     public void deleteActivity(Integer id) {
         Optional<Activity> optionalActivity = activityRepository.findById(id);
 
@@ -57,6 +89,11 @@ public class ActivityService {
         activityRepository.delete(optionalActivity.get());
     }
 
+    /**
+     * Uppdaterar en aktivitet.
+     * @param id ID på den aktivitet att uppdatera.
+     * @param activity En aktivitet som innehåller all data som ska uppdateras.
+     */
     public void patchActivity(Integer id, Activity activity) {
         Optional<Activity> optionalActivity = activityRepository.findById(id);
 

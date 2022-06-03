@@ -11,6 +11,9 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * En entity klass som mappar mot tabellen activity_contents.
+ */
 @Entity
 @Table(name = "activity_contents")
 public class ActivityContents implements Serializable {

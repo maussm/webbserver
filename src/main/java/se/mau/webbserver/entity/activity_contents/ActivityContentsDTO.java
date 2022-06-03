@@ -1,5 +1,8 @@
 package se.mau.webbserver.entity.activity_contents;
 
+/**
+ * En wrapper klass som används av REST APIt. Klassen översätts till entity klasserna av programmet.
+ */
 public class ActivityContentsDTO {
     private Integer activity_id;
     private Integer participant_id;

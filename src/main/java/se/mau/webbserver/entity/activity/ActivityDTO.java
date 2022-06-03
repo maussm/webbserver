@@ -2,6 +2,9 @@ package se.mau.webbserver.entity.activity;
 
 import java.time.LocalDate;
 
+/**
+ * En wrapper klass som används av REST APIt. Klassen översätts till entity klasserna av programmet.
+ */
 public class ActivityDTO {
     private Integer id;
     private LocalDate reported_date;

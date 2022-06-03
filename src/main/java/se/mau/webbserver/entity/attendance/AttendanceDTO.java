@@ -2,6 +2,9 @@ package se.mau.webbserver.entity.attendance;
 
 import java.time.LocalDate;
 
+/**
+ * En wrapper klass som används av REST APIt. Klassen översätts till entity klasserna av programmet.
+ */
 public class AttendanceDTO {
     private LocalDate date;
     private Integer participant_id;

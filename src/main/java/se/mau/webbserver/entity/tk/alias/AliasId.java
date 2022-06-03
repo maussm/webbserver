@@ -8,6 +8,9 @@ import javax.persistence.Lob;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * En klass som används internt av programmet.
+ */
 @Embeddable
 public class AliasId implements Serializable {
     private static final long serialVersionUID = - 6152512980519210746L;

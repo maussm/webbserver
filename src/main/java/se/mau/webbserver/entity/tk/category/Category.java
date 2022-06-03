@@ -12,9 +12,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * First layer of the service catalogue
+ * First layer of the service catalogue.
+ * En entity klass som mappar mot tabellen category.
  */
-
 @Entity
 @Table(name = "tk_category")
 public class Category implements Serializable {

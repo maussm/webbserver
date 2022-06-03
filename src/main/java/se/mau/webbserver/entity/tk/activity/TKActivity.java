@@ -11,9 +11,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * Fourth layer of the service-catalogue
+ * Tredje lagret i tjänstekatalogen.
+ * En entity klass som mappar mot tabellen participant.
  */
-
 @Entity
 @Table (name = "tk_activity")
 public class TKActivity implements Serializable {

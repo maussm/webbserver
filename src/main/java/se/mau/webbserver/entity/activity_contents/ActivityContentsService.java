@@ -5,19 +5,35 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Innehåller all logik för att hämta data från tabellen activity_contents.
+ */
 @Service
 public class ActivityContentsService {
     private final ActivityContentsRepository activityContentsRepository;
 
+    /**
+     * Skapas automatiskt av Spring Boot och initierar kopplingar till de olika tabellerna som krävs.
+     * @param activityContentsRepository Kopplingen mot tabellen activity_contents.
+     */
     @Autowired
     public ActivityContentsService(ActivityContentsRepository activityContentsRepository) {
         this.activityContentsRepository = activityContentsRepository;
     }
 
+    /**
+     * Hämtar alla rader från databasen.
+     * @return En lista av ActivityContents med alla rader som finns.
+     */
     public List<ActivityContents> getActivityContents() {
         return activityContentsRepository.findAll();
     }
 
+    /**
+     * Hämtar alla ActivityContents med ett visst id.
+     * @param id id som ska sökas på i databasen.
+     * @return En lista av ActivityContents med alla rader som har angivna id.
+     */
     public List<ActivityContents> getActivityContentsByActivityId(Integer id) {
         Optional<List<ActivityContents>> optionalActivityContents = activityContentsRepository.findByActivityId(id);
 
@@ -28,38 +44,11 @@ public class ActivityContentsService {
         }
     }
 
+    /**
+     * Lägger till ny data i databasen.
+     * @param activityContents Datan som ska läggas till.
+     */
     public void addActivityContents(ActivityContents activityContents) {
         activityContentsRepository.save(activityContents);
     }
-
-    // public void deleteActivityContentsActivityId(Integer id) {
-    //     Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByActivityId(id);
-    //
-    //     if(optionalActivityContents.isEmpty()) {
-    //         throw new IllegalStateException(String.format("Activity contents with activity id %s does not exist.", id));
-    //     }
-    //
-    //     activityContentsRepository.delete(optionalActivityContents.get());
-    // }
-
-
-    // public ActivityContents getActivityContentsByParticipantId(Integer id) {
-    //     Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByParticipantId(id);
-    //
-    //     if(optionalActivityContents.isPresent()) {
-    //         return optionalActivityContents.get();
-    //     } else {
-    //         throw new IllegalStateException(String.format("ActivityContents with participant id %s does not exist.", id));
-    //     }
-    // }
-
-    // public void deleteActivityContentsParticipantId(Integer id) {
-    //     Optional<ActivityContents> optionalActivityContents = activityContentsRepository.findByParticipantId(id);
-    //
-    //     if(optionalActivityContents.isEmpty()) {
-    //         throw new IllegalStateException(String.format("Activity contents with participant id %s does not exist.", id));
-    //     }
-    //
-    //     activityContentsRepository.delete(optionalActivityContents.get());
-    // }
 }

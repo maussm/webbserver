@@ -6,6 +6,9 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * En klass som används internt av programmet.
+ */
 @Embeddable
 public class ActivityContentsId implements Serializable {
     private static final long serialVersionUID = - 6797686072747520468L;

@@ -1,5 +1,8 @@
 package se.mau.webbserver.entity.tk.service;
 
+/**
+ * En wrapper klass som används av REST APIt. Klassen översätts till entity klasserna av programmet.
+ */
 public class ServiceDTO {
     private String name;
     private Integer cost_center_id;

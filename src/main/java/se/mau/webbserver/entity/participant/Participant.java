@@ -12,6 +12,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * En entity klass som mappar mot tabellen participant.
+ */
 @Entity
 @Table(name = "participant")
 public class Participant implements Serializable {

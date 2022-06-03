@@ -1,5 +1,8 @@
 package se.mau.webbserver.entity.tk.alias;
 
+/**
+ * En wrapper klass som används av REST APIt. Klassen översätts till entity klasserna av programmet.
+ */
 public class AliasDTO {
     private Integer cost_center_id;
     private Integer activity_id;

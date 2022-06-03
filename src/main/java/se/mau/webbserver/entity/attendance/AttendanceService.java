@@ -8,22 +8,39 @@ import se.mau.webbserver.entity.cost_center.CostCenterRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Innehåller all logik för att hämta data från tabellen attendance.
+ */
 @Service
 public class AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
     private final CostCenterRepository costCenterRepository;
 
+    /**
+     * Skapas automatiskt av Spring Boot och initierar kopplingar till de olika tabellerna som krävs.
+     * @param attendanceRepository Kopplingen mot tabellen attendance.
+     * @param costCenterRepository Kopplingen mot tabellen cost_center.
+     */
     @Autowired
     public AttendanceService(AttendanceRepository attendanceRepository, CostCenterRepository costCenterRepository) {
         this.attendanceRepository = attendanceRepository;
         this.costCenterRepository = costCenterRepository;
     }
 
+    /**
+     * Hämtar alla rader från databasen.
+     * @return En lista av Attendance med alla rader som finns.
+     */
     public List<Attendance> getAttendances() {
         return attendanceRepository.findAll();
     }
 
+    /**
+     * Hämtar ActivityContents med ett visst id.
+     * @param id Id som ska sökas på i databasen.
+     * @return ActivityContents om den finnas, annars kastas ett felmeddelande.
+     */
     public Attendance getAttendance(Integer id) {
         Optional<Attendance> optionalAttendance = attendanceRepository.findById(id);
 
@@ -34,10 +51,18 @@ public class AttendanceService {
         }
     }
 
+    /**
+     * Lägger till ny data i databasen.
+     * @param attendance Datan som ska läggas till.
+     */
     public void addAttendance(Attendance attendance) {
         attendanceRepository.save(attendance);
     }
 
+    /**
+     * Tar bort data med ett specifikt id från databasen.
+     * @param id Id på den data som ska tas bort.
+     */
     public void deleteAttendance(Integer id) {
         Optional<Attendance> optionalAttendance = attendanceRepository.findById(id);
 
@@ -48,6 +73,11 @@ public class AttendanceService {
         attendanceRepository.delete(optionalAttendance.get());
     }
 
+    /**
+     * Uppdaterar data i databasen.
+     * @param id Id på den data som ska uppdateras.
+     * @param attendance Uppdaterade datan som ska sparas i databasen.
+     */
     public void patchAttendance(Integer id, Attendance attendance) {
         Optional<Attendance> optionalAttendance = attendanceRepository.findById(id);
 

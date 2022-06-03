@@ -9,6 +9,9 @@ import javax.persistence.Lob;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * En klass som används internt av programmet.
+ */
 @Embeddable
 public class TKActivityId implements Serializable {
     private static final long serialVersionUID = - 4266712122611447255L;

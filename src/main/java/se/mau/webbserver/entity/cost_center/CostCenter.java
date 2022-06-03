@@ -11,6 +11,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * En entity klass som mappar mot tabellen cost_center.
+ */
 @Entity
 @Table(name = "cost_center")
 public class CostCenter implements Serializable {

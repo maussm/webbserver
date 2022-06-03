@@ -11,9 +11,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * Second layer of the service catalogue
+ * Second layer of the service catalogue.
+ * En entity klass som mappar mot tabellen activity_contents.
  */
-
 @Entity
 @Table(name = "tk_service")
 public class Service implements Serializable {

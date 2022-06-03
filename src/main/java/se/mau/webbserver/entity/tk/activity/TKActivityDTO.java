@@ -1,5 +1,8 @@
 package se.mau.webbserver.entity.tk.activity;
 
+/**
+ * En wrapper klass som används av REST APIt. Klassen översätts till entity klasserna av programmet.
+ */
 public class TKActivityDTO {
     private String name;
     private Integer serivce_id;
